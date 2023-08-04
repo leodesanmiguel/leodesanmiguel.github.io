@@ -1,0 +1,29 @@
+.card {
+  height: 400px;
+}
+#card1 {
+  background: url(https://images.pexels.com/photos/2422461/pexels-photo-2422461.jpeg?auto=compress&cs=tinysrgb&w=1600);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  backdrop-filter: blur(2px);
+  backdrop-filter: opacity(0.1);
+}
+#card2 {
+  background: url(https://images.pexels.com/photos/2844474/pexels-photo-2844474.jpeg?auto=compress&cs=tinysrgb&w=1600);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  backdrop-filter: opacity(0.1);
+}
+.card-body {
+  background-color: #0000006d;
+}
+.cta-card-title {
+  color: #fff;
+  font-size: 2rem !important;
+}
+.cta-card-text {
+  color: #fff;
+  font-size: 1.1rem !important;
+}

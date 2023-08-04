@@ -1,36 +1,43 @@
 import PropTypes from "prop-types";
+import "./styles.css";
 
 export const Hero = ({
   title = "El Titulo",
   subtitle = "subitulito",
-  number = 11,
+  link=
+  // number = 11,
 }) => {
-  const width = 400; //window.innerWidth;
-  const height = 400; // window.innerHeight;
+  // const width = 400; //window.innerWidth;
+  // const height = 400; // window.innerHeight;
 
-  const styleImg = {
-    position: "relative",
-    border: "2px red solid",
-    top: "50px",
-    left: "50px",
-    "min-width": "60%",
-    "min-height": "60%",
-  };
+  const cardContainer = () => {};
 
   return (
     <>
-      <h1>{title}</h1>
-      <p>{subtitle}</p>
-      <div style={styleImg}>
-        <img src={`https://unsplash.it/${width}/${height}?image=${number}`} />
+      <div className="hero" id="hero">
+        <div className="hero_content">
+          <h1 className="hero_title">{title}</h1>
+          <h3 className="hero_subtitle">
+            <em>{subtitle}</em>
+          </h3>
+          {/* <img src={`https://unsplash.it/${width}/${height}?image=${number}`} /> */}
+          <button className="hero_button" onClick={cardContainer} yo={link}>
+            View More ↓
+          </button>
+        </div>
       </div>
-      <button>View More</button>
     </>
   );
 };
 
 Hero.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   number: PropTypes.number,
+};
+
+Hero.defaultProps = {
+  title: "No hay un titulo",
+  subtitle: "No hay un subtitutlo",
+  number: 12,
 };
