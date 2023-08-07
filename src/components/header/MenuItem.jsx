@@ -4,8 +4,8 @@ export const MenuItem = ({ href, isActive, children }) => {
     <li>
       <a
         href={href}
-        className={`block px-3 py-2 rounded-md  
-          hover:bg-sky-800 hover:text-blue-100
+        className={`px-3 
+          hover:bg-sky-800 hover:text-blue-100 bg-transparent
           ${isActive ? 
             "bg-sky-500 text-white" 
             : "bg-slate-50"
