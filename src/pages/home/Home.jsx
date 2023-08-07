@@ -1,8 +1,14 @@
-import { textHero } from "../../common/constants";
-import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
-import { Hero } from "../../components/hero/Hero";
-import { CallToAction } from "../../components/CallToAction";
+
+import { 
+  Hero, 
+  CallToAction, 
+  Carrousel, 
+  Header, 
+  Footer,
+  textHero 
+} from "../Mycomponents";
+
+// import Muestra from "../../components/muetra/Muestra";
 
 const { titulo, subtitulo } = textHero;
 
@@ -11,8 +17,14 @@ const Home = () => {
     <>
       <Header />
       <Hero title={titulo} subtitle={subtitulo} />
-      <CallToAction title="QUQU" subtitle="sub titulo ququ" cardId={1} link='/link' />
-
+      <CallToAction
+        id="carousel"
+        title="The Popular Cities "
+        description="The best cities visited by our customers."
+        cardId={1}
+      />
+      <Carrousel />
+      {/* <Muestra/> */}
       <Footer />
     </>
   );

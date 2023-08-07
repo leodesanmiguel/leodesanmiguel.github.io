@@ -4,7 +4,7 @@ import "./styles.css";
 export const Hero = ({
   title = "El Titulo",
   subtitle = "subitulito",
-  link=
+  
   // number = 11,
 }) => {
   // const width = 400; //window.innerWidth;
@@ -21,7 +21,7 @@ export const Hero = ({
             <em>{subtitle}</em>
           </h3>
           {/* <img src={`https://unsplash.it/${width}/${height}?image=${number}`} /> */}
-          <button className="hero_button" onClick={cardContainer} yo={link}>
+          <button className="hero_button" onClick={cardContainer} >
             View More ↓
           </button>
         </div>
