@@ -1,11 +1,12 @@
 
+
 import { 
   Hero, 
   CallToAction, 
-  Carrousel, 
   Header, 
   Footer,
-  textHero 
+  textHero, 
+  Carousel
 } from "../Mycomponents";
 
 // import Muestra from "../../components/muetra/Muestra";
@@ -23,7 +24,7 @@ const Home = () => {
         description="The best cities visited by our customers."
         cardId={1}
       />
-      <Carrousel />
+      <Carousel />
       {/* <Muestra/> */}
       <Footer />
     </>

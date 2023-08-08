@@ -8,7 +8,7 @@ export const MenuBar = () => {
         Home
       </MenuItem>
       <MenuItem href={"/cities"}>Cities</MenuItem>
-      <MenuItem href={"/about-me"}>About me</MenuItem>
+      <MenuItem href={"/about-us"}>About us</MenuItem>
     </MenuList>
   );
 };
