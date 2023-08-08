@@ -3,12 +3,9 @@ import { Login, Logo } from "./Components";
 import Imagen from "../../assets/logo_my_tinerary.png";
 import { MenuBar } from "./MenuBar";
 import {
-  //  Button,
-  //  Card,
   IconButton,
+  MobileNav,
   Navbar,
-  //  MobileNav,
-  //  Navbar,
   Typography,
 } from "@material-tailwind/react";
 
@@ -16,36 +13,38 @@ export const Header = () => {
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
-    "resize", () => window.innerWidth >= 960 && setOpenNav(false);
+    "resize", () => window.innerWidth >= 768 && setOpenNav(false);
   }, []);
 
   const navList = (
     <>
-    <div className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6" >
-      <MenuBar />
-      <Login />
-    </div>
+      <div className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+        <MenuBar />
+        <Login />
+      </div>
     </>
   );
 
   return (
     <>
-    <Navbar className="mx-auto max-w-screen-xl py-1 px-1 ">
-      <div className="space-y-2 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6">
-        <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
-            as="a"
-            href="#"
-            className="mr-4 cursor-pointer py-1 font-medium"
-          >
-            <Logo imagen={Imagen} />
-          </Typography>
-          <div className="hidden lg:block">
-            {navList}
-
+      <Navbar className="mx-auto max-w-screen-xl p-1 y-4 bg-transparent ">
+        <div className="sm:p-2 lg:p-4 xl:p-6 ">  {/*  p-4         */}
+          <div className="flex items-center justify-between  text-blue-gray-900">
+            <Typography
+              as="a"
+              href="#"
+              className="cursor-pointer p-2 font-medium"
+            >
+              <Logo imagen={Imagen} />
+            </Typography>
+            <div className="hidden lg:block">{navList}</div>
             <IconButton
               variant="text"
-              className="ml-auto hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              className="ml-auto 
+                hover:bg-transparent 
+                focus:bg-transparent 
+                active:bg-transparent 
+                lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >
@@ -56,7 +55,7 @@ export const Header = () => {
                   className="h-6 w-6"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={3}
                 >
                   <path
                     strokeLinecap="round"
@@ -70,7 +69,7 @@ export const Header = () => {
                   className="h-6 w-6"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={3}
                 >
                   <path
                     strokeLinecap="round"
@@ -82,9 +81,10 @@ export const Header = () => {
             </IconButton>
           </div>
         </div>
-      </div>
+        <MobileNav open={openNav}>
+          <div className="container flex justify-center mx-1">{navList}</div>
+        </MobileNav>
       </Navbar>
     </>
   );
-
 };
