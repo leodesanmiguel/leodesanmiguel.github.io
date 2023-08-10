@@ -6,7 +6,7 @@ import {
   Header, 
   Footer,
   textHero, 
-  Carousel
+  Carrousel
 } from "../Mycomponents";
 
 // import Muestra from "../../components/muetra/Muestra";
@@ -24,7 +24,7 @@ const Home = () => {
         description="The best cities visited by our customers."
         cardId={1}
       />
-      <Carousel />
+      <Carrousel />
       {/* <Muestra/> */}
       <Footer />
     </>

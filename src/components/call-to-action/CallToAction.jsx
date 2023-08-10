@@ -1,17 +1,12 @@
 import PropTypes from "prop-types";
-// import "./styles.css";
 
 export const CallToAction = ({ title, description, cardId }) => {
   return (
-    <div id={"card" + cardId}>
-      <div className="card-body d-flex flex-column justify-content-center align-items-center">
-        <h5 className="card-title cta-card-title">{title}</h5>
-        <p className="card-text cta-card-text">
-          <em>{description}</em>
-        </p>
-      </div>
-
-
+    <div id={"card" + cardId} className="mx-auto bg-orange-400 my-2">
+      <h5 className="">{title}</h5>
+      <p className="">
+        <em>{description}</em>
+      </p>
     </div>
   );
 };

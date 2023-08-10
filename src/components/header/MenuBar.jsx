@@ -1,9 +1,20 @@
+import PropTypes from "prop-types";
 import {MenuList} from "./MenuList";
 import {MenuItem} from "./MenuItem";
+import { Fragment } from "react";
 
-export const MenuBar = () => {
+export const MenuBar = ({links}) => {
   return (
     <MenuList>
+      {
+        links.map((link, index)=> {
+          return ( 
+            <Fragment key={index}>
+              
+            </Fragment>
+          )
+        })
+      }
       <MenuItem href={"/home"} isActive={true}>
         Home
       </MenuItem>
@@ -13,3 +24,6 @@ export const MenuBar = () => {
   );
 };
 
+MenuBar.propTypes={
+  links: PropTypes.object,
+}
