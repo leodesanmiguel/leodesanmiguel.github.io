@@ -41,7 +41,7 @@ export const Carrousel = () => {
   return (
     <>
       <div className=" 
-        bg-transparent w-full h-auto flex 
+        bg-white-500 w-full h-auto flex mb-[5rem]
         flex-row justify-between items-center">
       <div
           className="

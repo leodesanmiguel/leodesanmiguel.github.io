@@ -8,13 +8,10 @@ import {
   Navbar,
   Typography,
 } from "@material-tailwind/react";
+import { links } from "../links";
 
 
-const links = [ 
-  { value: '/',          content: 'Home',     id: 1, active: true},
-  { value: '/cities',    content: 'Cities',   id: 2, active: true},
-  { value: '/about-us',  content: 'About Us', id: 3, active: true},
-]
+
 
 export const Header = () => {
   const [openNav, setOpenNav] = useState(false);
