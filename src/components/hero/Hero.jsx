@@ -4,7 +4,7 @@ import "./styles.css";
 export const Hero = ({
   title = "El Titulo",
   subtitle = "subitulito",
-  
+
   // number = 11,
 }) => {
   // const width = 400; //window.innerWidth;
@@ -20,8 +20,16 @@ export const Hero = ({
           <h3 className="hero_subtitle">
             <em>{subtitle}</em>
           </h3>
-          {/* <img src={`https://unsplash.it/${width}/${height}?image=${number}`} /> */}
-          <button className="hero_button" onClick={cardContainer} >
+          <button
+            onClick={cardContainer}
+            className="
+            mx-auto font-bold text-4x1 rounded-xl h-10 
+            flex items-center justify-center 
+            transition-all duration-500 
+            border border-orange-500 hover:border-orange-800 bg-orange-200 
+            hover:translate-y-3 w-1/2  hover:bg-orange-800 hover:text-orange-200 hover:scale-100 
+            "
+          >
             View More ↓
           </button>
         </div>

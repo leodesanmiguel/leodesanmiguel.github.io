@@ -1,23 +1,118 @@
-import { Carousel } from "@material-tailwind/react";
+import {
+  IconButton,
+} from "@material-tailwind/react";
+import { cities } from "../../common/constants";
+import { useEffect, useState } from "react";
+import { CitieItem } from "./citieItem";
+
+const fnNext = (n) => (n === cities.length - 1 ? 0 : n + 1);
+const fnPrev = (n) => (n === 0 ? cities.length - 1 : n - 1);
+console.log(`\n
+Cantidad de Ciudades.: ${cities.length}\n
+Ultima ciudad .......: ${cities.length - 1}`);
 
 export const Carrousel = () => {
+  const [indice0, setIndice0] = useState(0);
+  const [indice1, setIndice1] = useState(indice0 + 1);
+  const [indice2, setIndice2] = useState(indice1 + 1);
+  const [indice3, setIndice3] = useState(indice2 + 1);
+  const [mueve, setMueve] = useState(0);
+
+  const handlePrev = () => {
+    setIndice0(fnPrev(indice0));
+    setIndice1(fnPrev(indice1));
+    setIndice2(fnPrev(indice2));
+    setIndice3(fnPrev(indice3));
+    setMueve(mueve - 1);
+  };
+
+  const handleNext = () => {
+    setIndice0(fnNext(indice0));
+    setIndice1(fnNext(indice1));
+    setIndice2(fnNext(indice2));
+    setIndice3(fnNext(indice3));
+    setMueve(mueve + 1);
+  };
+
+  useEffect(() => {
+    console.log(indice0, indice1, indice2, indice3);
+  }, [mueve]);
+
   return (
-    <Carousel transition={{ duration: 2 }} className="rounded-xl">
-      <img
-        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-        alt="image 1"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-        alt="image 2"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-        alt="image 3"
-        className="h-full w-full object-cover"
-      />
-    </Carousel>
+    <>
+      <div className=" 
+        bg-transparent w-full h-auto flex 
+        flex-row justify-between items-center">
+      <div
+          className="
+          bg-transparent 
+          mx-1 w-8 p-1 h-full
+          flex items-center"
+        >
+          <IconButton
+            variant="text"
+            color="white"
+            size="md"
+            onClick={handlePrev}
+            className="translate-y-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={4}
+              stroke="currentColor"
+              className="h-8 w-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </IconButton>
+        </div>
+        <div
+          className=" 
+          bg-transparent
+          mx-1 w-full p-1 h-[25vh]
+          flex flex-wrap gap-4 justify-between "
+        >
+          <CitieItem item={cities[indice0]} />
+          <CitieItem item={cities[indice1]} />
+          <CitieItem item={cities[indice2]} />
+          <CitieItem item={cities[indice3]} />
+        </div>
+        <div
+          className="
+          bg-transparent 
+          mx-1 w-8 p-1 h-full
+          flex items-center"
+        >
+          <IconButton
+            variant="text"
+            color="white"
+            size="md"
+            onClick={handleNext}
+            className="translate-y-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={4}
+              stroke="currentColor"
+              className="h-8 w-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </IconButton>
+        </div>
+      </div>
+    </>
   );
-}
+};

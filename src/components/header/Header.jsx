@@ -9,6 +9,13 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+
+const links = [ 
+  { value: '/',          content: 'Home',     id: 1, active: true},
+  { value: '/cities',    content: 'Cities',   id: 2, active: true},
+  { value: '/about-us',  content: 'About Us', id: 3, active: true},
+]
+
 export const Header = () => {
   const [openNav, setOpenNav] = useState(false);
 
@@ -19,8 +26,8 @@ export const Header = () => {
   const navList = (
     <>
       <div className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        <MenuBar />
-        <Login />
+        <MenuBar links={links} />
+        <Login   links={links} />
       </div>
     </>
   );
@@ -28,7 +35,7 @@ export const Header = () => {
   return (
     <>
       <Navbar className="mx-auto max-w-screen-xl p-1 y-4 bg-transparent ">
-        <div className="sm:p-2 lg:p-4 xl:p-6 ">  {/*  p-4         */}
+        <div className="sm:p-2 lg:p-4 xl:p-6 "> 
           <div className="flex items-center justify-between  text-blue-gray-900">
             <Typography
               as="a"

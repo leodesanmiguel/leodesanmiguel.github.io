@@ -1,11 +1,12 @@
 
+
 import { 
   Hero, 
   CallToAction, 
-  Carrousel, 
   Header, 
   Footer,
-  textHero 
+  textHero, 
+  Carrousel
 } from "../Mycomponents";
 
 // import Muestra from "../../components/muetra/Muestra";

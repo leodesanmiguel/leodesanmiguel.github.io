@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 export const MenuItem = ({ href, isActive, children }) => {
   return (
     <li>
-      <a
-        href={href}
+      <Link
+        to={href}
         className={`px-3 
           hover:bg-sky-800 hover:text-blue-100 bg-transparent
           ${isActive ? 
@@ -12,7 +13,7 @@ export const MenuItem = ({ href, isActive, children }) => {
         }`}
       >
         {children}
-      </a>
+      </Link>
     </li>
   );
 };
