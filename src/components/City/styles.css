@@ -1,0 +1,43 @@
+.card-city {
+  width: 300px !important;
+  height: 400px !important;
+  overflow: hidden;
+  padding: 0;
+  transition: ease-in-out 0.3s;
+  font-family: "Lato", "Helvetica Neue";
+}
+.card-city:hover {
+  transform: scale(1.05);
+}
+.card-city > .card-img {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+}
+.card-city > .card-img-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+.card-img-overlay > .card-title {
+  font-size: 2rem !important;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.card-img-overlay > .card-text {
+  font-size: 1rem !important;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.btn-card {
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #37435c;
+  font-weight: 500;
+}
+.link-card {
+  color: white;
+  text-decoration: none !important;
+}

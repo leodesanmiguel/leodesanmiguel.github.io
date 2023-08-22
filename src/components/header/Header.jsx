@@ -21,7 +21,8 @@ export const Header = () => {
   }, []);
 
   const navList = (
-    <>
+    <> 
+    {console.log(`NAVList: ${links} `)}
       <div className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
         <MenuBar links={links} />
         <Login   links={links} />

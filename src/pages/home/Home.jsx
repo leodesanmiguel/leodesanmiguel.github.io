@@ -3,8 +3,6 @@
 import { 
   Hero, 
   CallToAction, 
-  Header, 
-  Footer,
   textHero, 
   Carrousel
 } from "../Mycomponents";
@@ -16,7 +14,6 @@ const { titulo, subtitulo } = textHero;
 const Home = () => {
   return (
     <>
-      <Header />
       <Hero title={titulo} subtitle={subtitulo} />
       <CallToAction
         id="carousel"
@@ -26,7 +23,6 @@ const Home = () => {
       />
       <Carrousel />
       {/* <Muestra/> */}
-      <Footer />
     </>
   );
 };
