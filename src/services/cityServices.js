@@ -1,18 +1,19 @@
 import axios from "axios";
 
-const citiesQuieries = (query) => {
-  axios.get(`http://localhost:3001/api/cities/${query}`).then((res) => {
-    const cities = res.data.cities;
-    console.log(`cantidad de ciudades: ${cities[1].nameCity}`);
-    return cities;
-  });
+export const  getAllCities = async () => {
+  try {
+    const response = await  axios.get(`http://localhost:3001/api/cities`);
+    return response.data.cities;
+  } catch (error) {
+    console.log(`💥💥 E R R O R ...
+        ${error}`);
+  }
 };
 
-export const getAllCities = (queryParams = '') => {
+export const  getOneCities = async (id) => {
   try {
-    const response = {... citiesQuieries(queryParams)};
-    console.log(`💚 Bieeen obtuviste las ciudades\n ${response[1].nameCity}`);
-    return response;
+    const response = await  axios.get(`http://localhost:3001/api/cities/${id}`);
+    return response.data.city;
   } catch (error) {
     console.log(`💥💥 E R R O R ...
         ${error}`);
