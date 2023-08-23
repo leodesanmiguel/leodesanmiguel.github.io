@@ -27,11 +27,7 @@ export const CitieItem = ({ item }) => {
         <CardHeader
           floated={false}
           shadow={false}
-          //color="transparent"
-          //className={"absolute inset-0 m-0 h-full w-full rounded-none bg-[url("+ imagenUrl + ")] bg-cover bg-center"}
-          //className={`absolute inset-0 m-0 h-full w-full rounded-none bg-[url("${imagenUrl}")] bg-cover bg-center`}
-          //className={`absolute inset-0 m-0 h-full w-full rounded-none bg-[url('${imagenUrl}')] bg-cover bg-center`}
-          className={`absolute inset-0 m-0 h-full w-full rounded-2 ] bg-cover bg-center`}
+          className={`absolute inset-0 m-0 h-full w-full rounded-2 bg-cover bg-center`}
         >
           <div className="to-bg-black-10 absolute 
           inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 cover bg-center" >
