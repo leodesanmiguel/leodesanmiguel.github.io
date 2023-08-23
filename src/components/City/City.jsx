@@ -87,20 +87,7 @@ export const City = ({ key, id, nameCity, country, imageUrl }) => {
   );
 };
 
-{
-  /* <img src={imageUrl} className="card-img" alt={name} /> */
-}
-{
-  /* <div className="">
-  <h5 className="card-title">{name}</h5>
-  <h6 className="badge text-bg-primary mb-2">{country}</h6>
-  <button className="btn-card">
-    <Link to={`/${id}`} className="link-card">
-      View More ...
-    </Link>
-  </button>
-</div> */
-}
+
 
 City.propTypes = {
   key: PropTypes.string,
