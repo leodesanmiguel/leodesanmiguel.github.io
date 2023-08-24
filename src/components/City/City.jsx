@@ -1,4 +1,4 @@
-import "./styles.css";
+// import "./styles.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
@@ -13,16 +13,16 @@ export const City = ({ key, id, nameCity, country, imageUrl }) => {
   return (
     <div
       className="
-        grid grid-cols-[90vw] 
+        bg-sky-400 
         my-[1.5rem] mx-[2rem]
         hover:-translate-y-[0.5rem] hover:scale-[105%] hover:bg-sky-500 duration-100"
       key={key}
     >
       <Card
         shadow={false}
-        className=" grid  grid-col grid-flow-col gap-[1.5rem]
-        h-[20rem] w-[30%] 
-         justify-center  
+        className=" 
+        h-[20rem] w-400 
+        justify-center  
         overflow-hidden text-center
         
         "

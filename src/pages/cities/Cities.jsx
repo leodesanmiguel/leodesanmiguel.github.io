@@ -1,3 +1,4 @@
+import { Typography } from "@material-tailwind/react";
 import { CitiesList } from "../../components/citiesList/cityList";
 
 const Cities = () => {
@@ -5,9 +6,9 @@ const Cities = () => {
     <>
     {console.log(`pagina de cities`)}
       <div>
-        <h1 className="text-center text-white m-4">
+        <Typography variant="h1" color="purple" textGradient="true" >
           Discover our most important cities!
-        </h1>
+        </Typography>
         <CitiesList />
       </div>
       ;
