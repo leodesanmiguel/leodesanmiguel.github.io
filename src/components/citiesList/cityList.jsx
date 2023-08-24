@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllCities } from "../../services/cityServices";
 import { City } from "../City/City";
-import './style.css'
+
 
 export const CitiesList = () => {
   const [cities, setCities] = useState([]);
@@ -13,7 +13,7 @@ export const CitiesList = () => {
   }, []);
 
   return (
-    <div className="grid">
+    <div className="grid grid-cols-3 gap-4">
 
       {cities ? (
         <>
