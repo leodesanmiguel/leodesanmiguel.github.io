@@ -1,14 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
-
 import { setCities } from "./redux/slices";
 
-// import  from "./pages/home/Home";
-// import  from "./pages/cities/Cities";
-// import  from "./pages/about-us/AboutUs";
-// import  from "./pages/login/Login";
 import { 
   AboutUs, 
   Home, 
@@ -46,7 +41,7 @@ const router = createBrowserRouter([
 
 function App() {
   const dispach = useDispatch();
-
+  
   const getCities = async () => {
     await axios.get("http://localhost:3001/api/cities").then((res) => {
       console.log(res.data.cities);
