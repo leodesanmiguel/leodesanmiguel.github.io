@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
-export const City = ({ key, id, nameCity, country, imageUrl }) => {
+export const City = ({ key, id, nameCity, country, imageUrl, description }) => {
   return (
     <div
       className="
@@ -66,28 +66,28 @@ export const City = ({ key, id, nameCity, country, imageUrl }) => {
           <Typography variant="h4" className="mb-2 text-gray-400">
             {country}
           </Typography>
-        </CardBody>
-        <CardFooter
-          className="
-          relative h-[1rem] mt-[6rem]
-          bg-sky-gray-900 
-        "
-        >
+
           <Link
-            className=" rounded-2 btn-card
+            className=" rounded-2 btn-card mt-[2rem]
             transition ease-in-out delay-150 
             hover:-translate-y-2 hover:scale-100 hover:bg-indigo-500 duration-100 ..."
             to={`/city/${id}`}
+            >
+          <Typography
+            variant="p"
+            color="white"
+            className="font-medium leading-[2]"
           >
             View More ...
+
+          </Typography>
+
           </Link>
-        </CardFooter>
+        </CardBody>
       </Card>
     </div>
   );
 };
-
-
 
 City.propTypes = {
   key: PropTypes.string,

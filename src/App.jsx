@@ -1,11 +1,23 @@
-import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Cities from "./pages/cities/Cities";
-import AboutUs from "./pages/about-us/AboutUs";
-import Login from "./pages/login/Login";
-import LayoutMain from "./layouts/LayoutMain";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
+
+import { setCities } from "./redux/slices";
+
+// import  from "./pages/home/Home";
+// import  from "./pages/cities/Cities";
+// import  from "./pages/about-us/AboutUs";
+// import  from "./pages/login/Login";
+import { 
+  AboutUs, 
+  Home, 
+  Cities, 
+  Login, 
+  LayoutMain 
+} from "./pages";
+
+import "./App.css";
 
 const router = createBrowserRouter([
   {
@@ -32,16 +44,24 @@ const router = createBrowserRouter([
   },
 ]);
 
-
 function App() {
-  const { counter } = useSelector((state) => state.counter);
+  const dispach = useDispatch();
+
+  const getCities = async () => {
+    await axios.get("http://localhost:3001/api/cities").then((res) => {
+      console.log(res.data.cities);
+      dispach(setCities(res.data.cities));
+    });
+  };
+
+  useEffect(() => {
+    getCities();
+  }, []);
+
 
   return (
     <>
       <RouterProvider router={router} />
-      <button type="button" onClick={()=>{}}>
-        count is: {counter}
-      </button>
     </>
   );
 }

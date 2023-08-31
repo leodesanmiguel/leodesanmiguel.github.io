@@ -11,7 +11,7 @@ import {
 
 const { titulo, subtitulo } = textHero;
 
-const Home = () => {
+export const Home = () => {
   return (
     <>
       <Hero title={titulo} subtitle={subtitulo} />
@@ -27,4 +27,3 @@ const Home = () => {
   );
 };
 
-export default Home;
