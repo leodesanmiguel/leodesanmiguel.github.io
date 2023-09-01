@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 import {
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
 
-export const City = ({ key, id, nameCity, country, imageUrl, description }) => {
+export const City = ({ key, id, nameCity, country, imageUrl }) => {
   return (
     <div
       className="
@@ -66,18 +65,19 @@ export const City = ({ key, id, nameCity, country, imageUrl, description }) => {
           <Typography variant="h4" className="mb-2 text-gray-400">
             {country}
           </Typography>
-
+          
           <Link
             className=" rounded-2 btn-card mt-[2rem]
             transition ease-in-out delay-150 
             hover:-translate-y-2 hover:scale-100 hover:bg-indigo-500 duration-100 ..."
-            to={`/city/${id}`}
+            to={`/cities/${id}`}
             >
           <Typography
             variant="p"
             color="white"
             className="font-medium leading-[2]"
           >
+             
             View More ...
 
           </Typography>

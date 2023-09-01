@@ -5,15 +5,22 @@ export const citySlice = createSlice({
   initialState: {
     data: [],
     counter: 0,
-    cityFound: {},
+    page: 0,
+    isLoading: false,
+    cityFound: {}
   },
 
   reducers: {
     setCities: (state, action) => {
-      state.data = action.payload;
+      state.isLoading = false;
+      state.page = action.payload.page;
+      state.data = action.payload.data;
+      state.counter = action.payload.counter;
+      console.log("ACTION: ", action);
     },
-    increment: (state) => {
-      state.counter += 1;
+
+    starLoadingCities: (state /* action */) => {
+      state.isLoading = true;
     },
 
     filterOneCityById: (state, action) => {
@@ -22,4 +29,5 @@ export const citySlice = createSlice({
   },
 });
 
-export const { setCities, filterOneCityById } = citySlice.actions;
+export const { setCities, filterOneCityById, starLoadingCities } =
+  citySlice.actions;

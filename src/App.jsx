@@ -1,8 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import axios from "axios";
-import { setCities } from "./redux/slices";
 
 import { 
   AboutUs, 
@@ -13,6 +10,7 @@ import {
 } from "./pages";
 
 import "./App.css";
+import { CityDetail } from "./pages/cities/CityDetail";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +26,10 @@ const router = createBrowserRouter([
         element: <Cities />,
       },
       {
+        path: "/cities/:id",
+        element: <CityDetail />,
+      },
+      {
         path: "/about-us",
         element: <AboutUs />,
       },
@@ -40,20 +42,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const dispach = useDispatch();
-  
-  const getCities = async () => {
-    await axios.get("http://localhost:3001/api/cities").then((res) => {
-      console.log(res.data.cities);
-      dispach(setCities(res.data.cities));
-    });
-  };
-
-  useEffect(() => {
-    getCities();
-  }, []);
-
-
   return (
     <>
       <RouterProvider router={router} />
