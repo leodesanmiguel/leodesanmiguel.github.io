@@ -11,6 +11,7 @@ import {
 
 import "./App.css";
 import { CityDetail } from "./pages/cities/CityDetail";
+import { BookingCity } from "./pages/cities/BookingCity";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/cities/:id",
         element: <CityDetail />,
+      },
+      {
+        path: "/booking/:id",
+        element: <BookingCity />,
       },
       {
         path: "/about-us",

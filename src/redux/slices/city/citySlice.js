@@ -16,7 +16,6 @@ export const citySlice = createSlice({
       state.page = action.payload.page;
       state.data = action.payload.data;
       state.counter = action.payload.counter;
-      console.log("ACTION: ", action);
     },
 
     starLoadingCities: (state /* action */) => {
@@ -25,6 +24,8 @@ export const citySlice = createSlice({
 
     filterOneCityById: (state, action) => {
       state.cityFound = state.data.find((city) => city._id === action.payload);
+      console.log("ACTION de filterOneCityById: ---> ", action);
+      console.log(state.cityFound);
     },
   },
 });

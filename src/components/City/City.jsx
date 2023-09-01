@@ -70,7 +70,7 @@ export const City = ({ key, id, nameCity, country, imageUrl }) => {
             className=" rounded-2 btn-card mt-[2rem]
             transition ease-in-out delay-150 
             hover:-translate-y-2 hover:scale-100 hover:bg-indigo-500 duration-100 ..."
-            to={`/cities/${id}`}
+            to={`/booking/${id}`}
             >
           <Typography
             variant="p"
