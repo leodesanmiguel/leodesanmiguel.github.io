@@ -11,7 +11,10 @@ import {
 
 import "./App.css";
 import { CityDetail } from "./pages/cities/CityDetail";
-import { BookingCity } from "./pages/cities/BookingCity";
+import { CardCity } from "./pages/cities/CardCity";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getAllCities } from "./redux/thunk/thunkCity";
 
 const router = createBrowserRouter([
   {
@@ -31,8 +34,8 @@ const router = createBrowserRouter([
         element: <CityDetail />,
       },
       {
-        path: "/booking/:id",
-        element: <BookingCity />,
+        path: "/cardcity/:id",
+        element: <CardCity />,
       },
       {
         path: "/about-us",
@@ -47,6 +50,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+
+  const dispach = useDispatch();
+
+ 
+  useEffect(() => {
+    dispach(getAllCities());
+  }, []);
+
+
   return (
     <>
       <RouterProvider router={router} />

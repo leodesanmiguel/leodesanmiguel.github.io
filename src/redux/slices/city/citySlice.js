@@ -4,10 +4,12 @@ export const citySlice = createSlice({
   name: "cities",
   initialState: {
     data: [],
+    countryId: '',
+
     counter: 0,
     page: 0,
     isLoading: false,
-    cityFound: {}
+    cityFound: {},
   },
 
   reducers: {
@@ -16,6 +18,7 @@ export const citySlice = createSlice({
       state.page = action.payload.page;
       state.data = action.payload.data;
       state.counter = action.payload.counter;
+      state.countryId = action.payload.countryId;
     },
 
     starLoadingCities: (state /* action */) => {
@@ -24,8 +27,8 @@ export const citySlice = createSlice({
 
     filterOneCityById: (state, action) => {
       state.cityFound = state.data.find((city) => city._id === action.payload);
-      console.log("ACTION de filterOneCityById: ---> ", action);
-      console.log(state.cityFound);
+      
+      console.log('ciudad encontrada ',state.cityFound);
     },
   },
 });

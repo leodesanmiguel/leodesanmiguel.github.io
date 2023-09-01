@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
+  Button,
   Card,
   CardBody,
   CardHeader,
@@ -65,23 +66,16 @@ export const City = ({ key, id, nameCity, country, imageUrl }) => {
           <Typography variant="h4" className="mb-2 text-gray-400">
             {country}
           </Typography>
-          
+
           <Link
-            className=" rounded-2 btn-card mt-[2rem]
+            className=" rounded-2 btn-card mt-[1rem]
             transition ease-in-out delay-150 
             hover:-translate-y-2 hover:scale-100 hover:bg-indigo-500 duration-100 ..."
-            to={`/booking/${id}`}
-            >
-          <Typography
-            variant="p"
-            color="white"
-            className="font-medium leading-[2]"
+            to={`/cardcity/${id}`}
           >
-             
-            View More ...
-
-          </Typography>
-
+            <Button color="blue-gray" variant="outlined" className="w-[100px]">
+              More ...
+            </Button>
           </Link>
         </CardBody>
       </Card>

@@ -5,7 +5,7 @@ export const Cities = () => {
   return (
     <>
       <div>
-        <Typography variant="h1" color="purple" textGradient="true" >
+        <Typography variant="h1" color="purple"  >
           Discover our most important cities!
         </Typography>
         <CitiesList />

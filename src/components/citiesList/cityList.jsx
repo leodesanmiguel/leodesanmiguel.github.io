@@ -12,10 +12,6 @@ export const CitiesList = () => {
     (state) => state.cities
   );
 
-  useEffect(() => {
-    dispach(getAllCities());
-  }, []);
-
 
   return (
     <>
