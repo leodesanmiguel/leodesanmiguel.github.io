@@ -4,3 +4,5 @@ export { CallToAction } from "../components/call-to-action/CallToAction";
 export { Carrousel } from "../components/carrousel/Carrousel";
 export { Footer } from "../components/footer/Footer";
 export { Header } from "../components/header/Header";
+
+

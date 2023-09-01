@@ -1,10 +1,9 @@
-import "./styles.css";
+// import "./styles.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
@@ -13,16 +12,16 @@ export const City = ({ key, id, nameCity, country, imageUrl }) => {
   return (
     <div
       className="
-        grid grid-cols-[90vw] 
+        bg-sky-400 
         my-[1.5rem] mx-[2rem]
         hover:-translate-y-[0.5rem] hover:scale-[105%] hover:bg-sky-500 duration-100"
       key={key}
     >
       <Card
         shadow={false}
-        className=" grid  grid-col grid-flow-col gap-[1.5rem]
-        h-[20rem] w-[30%] 
-         justify-center  
+        className=" 
+        h-[20rem] w-400 
+        justify-center  
         overflow-hidden text-center
         
         "
@@ -66,28 +65,29 @@ export const City = ({ key, id, nameCity, country, imageUrl }) => {
           <Typography variant="h4" className="mb-2 text-gray-400">
             {country}
           </Typography>
-        </CardBody>
-        <CardFooter
-          className="
-          relative h-[1rem] mt-[6rem]
-          bg-sky-gray-900 
-        "
-        >
+          
           <Link
-            className=" rounded-2 btn-card
+            className=" rounded-2 btn-card mt-[2rem]
             transition ease-in-out delay-150 
             hover:-translate-y-2 hover:scale-100 hover:bg-indigo-500 duration-100 ..."
-            to={`/city/${id}`}
+            to={`/cities/${id}`}
+            >
+          <Typography
+            variant="p"
+            color="white"
+            className="font-medium leading-[2]"
           >
+             
             View More ...
+
+          </Typography>
+
           </Link>
-        </CardFooter>
+        </CardBody>
       </Card>
     </div>
   );
 };
-
-
 
 City.propTypes = {
   key: PropTypes.string,

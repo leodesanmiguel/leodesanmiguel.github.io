@@ -1,40 +1,51 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { 
+  AboutUs, 
+  Home, 
+  Cities, 
+  Login, 
+  LayoutMain 
+} from "./pages";
+
 import "./App.css";
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
-import Home from './pages/home/Home';
-import Cities from './pages/cities/Cities';
-import AboutUs from './pages/about-us/AboutUs';
-import Login from './pages/login/Login';
-import LayoutMain from "./layouts/LayoutMain";
+import { CityDetail } from "./pages/cities/CityDetail";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <LayoutMain/>,
+    path: "/",
+    element: <LayoutMain />,
     children: [
       {
-        path: '/home',
-        element: <Home />
+        path: "/home",
+        element: <Home />,
       },
       {
-        path: '/cities',
-        element: <Cities />
+        path: "/cities",
+        element: <Cities />,
       },
       {
-        path: '/about-us',
-        element: <AboutUs/>
+        path: "/cities/:id",
+        element: <CityDetail />,
       },
       {
-        path: '/login',
-        element: <Login/>
+        path: "/about-us",
+        element: <AboutUs />,
       },
-    ]
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
   },
- 
-])
+]);
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
