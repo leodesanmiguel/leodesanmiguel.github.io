@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { City } from "../City/City";
 import { Button, Typography } from "@material-tailwind/react";

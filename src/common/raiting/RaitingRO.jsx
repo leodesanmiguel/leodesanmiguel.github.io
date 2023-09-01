@@ -1,7 +1,11 @@
 import { Rating } from "@material-tailwind/react";
- 
-export const  RatingRO = ({number})=> {
-  return <Rating value={number} readonly />;
+import PropTypes from 'prop-types';
+
+export const  RatingRO = ({raiting=0})=> {
+  return <Rating value={raiting} readonly />;
 }
 
 
+RatingRO.propTypes = {
+  raiting: PropTypes.number,
+}

@@ -26,6 +26,8 @@ export const citySlice = createSlice({
     },
 
     filterOneCityById: (state, action) => {
+
+      console.log(state.data, action);
       state.cityFound = state.data.find((city) => city._id === action.payload);
       
       console.log('ciudad encontrada ',state.cityFound);
