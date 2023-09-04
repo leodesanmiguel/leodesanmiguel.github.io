@@ -13,33 +13,29 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { RatingRO } from "../../common/raiting/RaitingRO";
+import { ListPeople } from "../../common/listPeople/ListPeople";
+import { AccordionComment } from "../../common/accordion/accordionComment";
+import { AvatarSizes } from "../../common/avatar/Avatar";
+import { SpinnerC } from "../../common/spinner/SpinnerC";
+import { TableItinery } from "../../common/tableItinery/TableItinery";
 
 export function CardCity() {
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
-  const {data} = useSelector((state) => state.cities);
-  
-  const { 
-    nameCity, imageUrl, rateCity, 
-    tinerarysCount, description, distance,
-    country 
-  } =
-  useSelector((state) => state.cities.cityFound);
+  const { data } = useSelector((state) => state.cities);
 
-
+  const { nameCity, imageUrl, rateCity, description, distance, country } =
+    useSelector((state) => state.cities.cityFound);
 
   useEffect(() => {
-    console.log('paquete',data) ;
+    console.log("paquete", data);
     if (data !== undefined || data.length > 0) {
       console.log("ID ciudad: ", id);
       dispatch(filterOneCityById(id));
-
     }
   }, [nameCity]);
-
-  
 
   return (
     <>
@@ -52,7 +48,14 @@ export function CardCity() {
                 alt={nameCity}
                 className="w-full max-h-[50rem] "
               />
-              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+              <div
+                className="
+                to-bg-black-10 absolute 
+                inset-0 h-full w-full 
+                bg-gradient-to-tr 
+                from-transparent via-transparent to-black/60 "
+              />
+
               <IconButton
                 size="sm"
                 color="red"
@@ -73,7 +76,7 @@ export function CardCity() {
               </IconButton>
               <Button
                 color="sky"
-                className="!absolute top-4 left-4 rounded-full "
+                className="absolute top-4 left-4 rounded-full "
               >
                 <img
                   src={country.flag}
@@ -81,6 +84,15 @@ export function CardCity() {
                   className="w-[3rem] h-[2rem]"
                 />
               </Button>
+              <AvatarSizes />
+
+              <div
+                className="
+                to-bg-black-10 absolute 
+                inset-0 h-full w-auto  
+                bg-gradient-to-tr 
+                from-transparent via-transparent to-black/60 "
+              ></div>
             </CardHeader>
             <CardBody>
               <div className="mb-3 flex items-center justify-between">
@@ -91,7 +103,7 @@ export function CardCity() {
                 >
                   {nameCity}, {country.countryName}
                 </Typography>
-                <RatingRO raiting={rateCity  % 5} />
+                <RatingRO raiting={rateCity % 5} />
               </div>
               <Typography color="gray">{description}</Typography>
               <div className="group mt-8 inline-flex flex-wrap items-end gap-1">
@@ -186,14 +198,20 @@ export function CardCity() {
                   </span>
                 </Tooltip>
               </div>
+              <div className="my-3 flex items-center justify-center">
+                <ListPeople />
+              </div>
+              <div className="my-3 flex flex-col items-center justify-center">
+                <TableItinery />
+              </div>
+              <div className="my-3 flex flex-col items-center justify-center">
+                <AccordionComment />
+              </div>
             </CardBody>
             <CardFooter className="pt-3">
+              <SpinnerC />
               <Link to={"/cities"} className="">
-                <Button
-                  className="my-[2rem] "
-                  fullWidth={true}
-                  size="lg"
-                >
+                <Button className="my-[2rem] " fullWidth={true} size="lg">
                   Return to City List
                 </Button>
               </Link>
