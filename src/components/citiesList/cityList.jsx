@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { City } from "../City/City";
 import { Button, Typography } from "@material-tailwind/react";
@@ -11,10 +10,6 @@ export const CitiesList = () => {
   const { data, counter, isLoading, page } = useSelector(
     (state) => state.cities
   );
-
-  useEffect(() => {
-    dispach(getAllCities());
-  }, []);
 
 
   return (
