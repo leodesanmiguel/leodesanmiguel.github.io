@@ -13,9 +13,8 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { RatingRO } from "../../common/raiting/RaitingRO";
-import { ListPeople } from "../../common/listPeople/ListPeople";
-import { AccordionComment } from "../../common/accordion/accordionComment";
-import { AvatarSizes } from "../../common/avatar/Avatar";
+// import { ListPeople } from "../../common/listPeople/ListPeople";
+// import { AccordionComment } from "../../common/accordion/accordionComment";
 import { SpinnerC } from "../../common/spinner/SpinnerC";
 import { TableItinery } from "../../common/tableItinery/TableItinery";
 
@@ -26,8 +25,16 @@ export function CardCity() {
 
   const { data } = useSelector((state) => state.cities);
 
-  const { nameCity, imageUrl, rateCity, description, distance, country } =
-    useSelector((state) => state.cities.cityFound);
+  const {
+    _id,
+    nameCity,
+    imageUrl,
+    rateCity,
+    description,
+    distance,
+    country,
+    itineraries,
+  } = useSelector((state) => state.cities.cityFound);
 
   useEffect(() => {
     console.log("paquete", data);
@@ -55,7 +62,6 @@ export function CardCity() {
                 bg-gradient-to-tr 
                 from-transparent via-transparent to-black/60 "
               />
-
               <IconButton
                 size="sm"
                 color="red"
@@ -84,8 +90,6 @@ export function CardCity() {
                   className="w-[3rem] h-[2rem]"
                 />
               </Button>
-              <AvatarSizes />
-
               <div
                 className="
                 to-bg-black-10 absolute 
@@ -94,6 +98,7 @@ export function CardCity() {
                 from-transparent via-transparent to-black/60 "
               ></div>
             </CardHeader>
+
             <CardBody>
               <div className="mb-3 flex items-center justify-between">
                 <Typography
@@ -103,6 +108,9 @@ export function CardCity() {
                 >
                   {nameCity}, {country.countryName}
                 </Typography>
+                <Link to={"#itinearies"}>
+                  <Button>Itineraries Count: {itineraries.length}</Button>
+                </Link>
                 <RatingRO raiting={rateCity % 5} />
               </div>
               <Typography color="gray">{description}</Typography>
@@ -198,15 +206,18 @@ export function CardCity() {
                   </span>
                 </Tooltip>
               </div>
-              <div className="my-3 flex items-center justify-center">
+              {/* <div className="my-3 flex items-center justify-center">
                 <ListPeople />
-              </div>
+              </div> */}
               <div className="my-3 flex flex-col items-center justify-center">
-                <TableItinery />
+                <TableItinery 
+                  city={nameCity}
+                  id={_id}
+                  />
               </div>
-              <div className="my-3 flex flex-col items-center justify-center">
+              {/* <div className="my-3 flex flex-col items-center justify-center">
                 <AccordionComment />
-              </div>
+              </div> */}
             </CardBody>
             <CardFooter className="pt-3">
               <SpinnerC />

@@ -5,7 +5,7 @@ export const citySlice = createSlice({
   initialState: {
     data: [],
     countryId: '',
-
+    itinearies: [],
     counter: 0,
     page: 0,
     isLoading: false,
@@ -27,10 +27,10 @@ export const citySlice = createSlice({
 
     filterOneCityById: (state, action) => {
 
-      console.log(state.data, action);
+      console.log(state.data.cityFound);
       state.cityFound = state.data.find((city) => city._id === action.payload);
+      state.itinearies = state.data.itinearies;      
       
-      console.log('ciudad encontrada ',state.cityFound);
     },
   },
 });

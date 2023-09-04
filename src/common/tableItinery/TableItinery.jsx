@@ -1,5 +1,9 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import {
+  PencilIcon,
+  RocketLaunchIcon,
+  BanknotesIcon,
+} from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -16,7 +20,12 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
- 
+import { useDispatch, useSelector } from "react-redux";
+
+import { useEffect } from "react";
+
+import PropTypes from "prop-types";
+import { getAllItineraries } from "../../redux/thunk/thunkItinerary";
 const TABS = [
   {
     label: "All",
@@ -31,9 +40,9 @@ const TABS = [
     value: "unmonitored",
   },
 ];
- 
-const TABLE_HEAD = ["Member", "Function", "Status", "Employed", ""];
- 
+
+const TABLE_HEAD = ["Agent", "Price", "Duration", "Hastag", "Likes", ""];
+
 const TABLE_ROWS = [
   {
     img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
@@ -80,19 +89,41 @@ const TABLE_ROWS = [
     online: false,
     date: "04/10/21",
   },
+  {
+    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
+    name: "Richard Gran",
+    email: "richard@creative-tim.com",
+    job: "Manager",
+    org: "Executive",
+    online: false,
+    date: "04/10/21",
+  },
 ];
- 
-export function TableItinery() {
+
+export const  TableItinery = ({ city, id  }) => {
+  // const billete = Math.floor(Math.random() * 5) + 1;
+  console.log(city, id);
+
+  const dispach = useDispatch();
+
+ // const itinearies = useSelector(store => store.itinearies.data);
+  
+  // useEffect( ()=> {
+  //   dispach( getAllItineraries(id))
+  // }, [itinearies])
+
+  
+
   return (
     <Card className="h-full w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-            <Typography variant="h5" color="blue-gray">
-              Members list
+            <Typography variant="h3" color="blue-gray">
+              Itinearies list
             </Typography>
             <Typography color="gray" className="mt-1 font-normal">
-              See information about all members
+              See information about all departures and excursions.
             </Typography>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
@@ -100,7 +131,8 @@ export function TableItinery() {
               view all
             </Button>
             <Button className="flex items-center gap-3" size="sm">
-              <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add member
+              <RocketLaunchIcon strokeWidth={2} className="h-4 w-4" /> Add
+              Itinery
             </Button>
           </div>
         </div>
@@ -149,7 +181,7 @@ export function TableItinery() {
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
- 
+
                 return (
                   <tr key={name}>
                     <td className={classes}>
@@ -174,8 +206,14 @@ export function TableItinery() {
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="flex flex-col">
-                        <Typography
+                      <div className="flex flex-row flex-wrap w-[80px]">
+                        
+                        <BanknotesIcon color="green" className="w-6" />
+                        <BanknotesIcon color="green" className="w-6" />
+                        <BanknotesIcon color="green" className="w-6" />
+                        <BanknotesIcon color="green" className="w-6" />
+                        <BanknotesIcon color="green" className="w-6" />
+                        {/* <Typography
                           variant="small"
                           color="blue-gray"
                           className="font-normal"
@@ -188,7 +226,7 @@ export function TableItinery() {
                           className="font-normal opacity-70"
                         >
                           {org}
-                        </Typography>
+                        </Typography> */}
                       </div>
                     </td>
                     <td className={classes}>
@@ -219,7 +257,7 @@ export function TableItinery() {
                     </td>
                   </tr>
                 );
-              },
+              }
             )}
           </tbody>
         </table>
@@ -240,3 +278,10 @@ export function TableItinery() {
     </Card>
   );
 }
+
+
+TableItinery.propTypes = {
+  city: PropTypes.string,
+  id: PropTypes.string,
+};
+
