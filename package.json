@@ -1,7 +1,8 @@
 {
-  "name": "workshop-1",
+  "name": "mytinerary-sprint-mfe",
   "private": true,
   "version": "0.0.0",
+  "description": "MERN Stack Micro Frontend para MindHub 2023",
   "type": "module",
   "scripts": {
     "start": "vite",

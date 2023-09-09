@@ -1,4 +1,4 @@
-import { urlApi } from "../../api/cityApi";
+import { urlApi } from "../../api/Api.js";
 
 export const getAllItineraries = (id) => {
   return async (dispach, getState) => {

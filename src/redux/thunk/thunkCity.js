@@ -1,4 +1,4 @@
-import { urlApi } from "../../api/cityApi";
+import { urlApi } from "../../api/Api.js";
 import { setCities, starLoadingCities } from "../slices";
 
 export const getAllCities = (page = 0) => {
