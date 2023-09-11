@@ -4,24 +4,23 @@ export const citySlice = createSlice({
   name: "cities",
   initialState: {
     data: [],
-    countryId: '',
+    filteredCities: [],
     itinearies: [],
+    cityFound: {},
+    countryId: '',
     counter: 0,
     page: 0,
     isLoading: false,
-    cityFound: {},
   },
 
   reducers: {
     setCities: (state, action) => {
-      state.isLoading = false;
-      state.page = action.payload.page;
       state.data = action.payload.data;
-      state.counter = action.payload.counter;
-      state.countryId = action.payload.countryId;
+      state.filteredCities = action.payload.data;
+      state.isLoading = false;
     },
 
-    starLoadingCities: (state /* action */) => {
+   starLoadingCities: (state /* action */) => {
       state.isLoading = true;
     },
 

@@ -8,9 +8,6 @@ export const Login = () => {
   return( <>
  
  <SignUp />
- 
-  {/* <SignUp />
-  <SignUp_1 /> */}
   </>);
 };
 

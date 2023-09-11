@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
@@ -9,7 +10,7 @@ import {
   CardFooter,
   Typography,
   Button,
-  Tooltip,
+  // Tooltip,
   IconButton,
 } from "@material-tailwind/react";
 import { RatingRO } from "../../common/raiting/RaitingRO";
@@ -31,7 +32,7 @@ export function CardCity() {
     imageUrl,
     rateCity,
     description,
-    distance,
+    // distance,
     country,
     itineraries,
   } = useSelector((state) => state.cities.cityFound);
@@ -114,7 +115,7 @@ export function CardCity() {
                 <RatingRO raiting={rateCity % 5} />
               </div>
               <Typography color="gray">{description}</Typography>
-              <div className="group mt-8 inline-flex flex-wrap items-end gap-1">
+              {/* <div className="group mt-8 inline-flex flex-wrap items-end gap-1">
                 <Tooltip content={distance}>
                   <span
                     className="cursor-pointer rounded-full border 
@@ -205,11 +206,11 @@ export function CardCity() {
                     +20
                   </span>
                 </Tooltip>
-              </div>
+              </div> */}
               {/* <div className="my-3 flex items-center justify-center">
                 <ListPeople />
               </div> */}
-              <div className="my-3 flex flex-col items-center justify-center">
+              <div className="my-3 bg-blue-gray-500 rounded-lg flex flex-col items-center justify-center">
                 <TableItinery 
                   city={nameCity}
                   id={_id}
