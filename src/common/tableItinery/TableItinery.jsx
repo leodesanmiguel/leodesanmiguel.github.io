@@ -1,3 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllItineraries } from "../../redux/thunk/thunkItinerary";
+
+import { TABLE_HEAD, TABLE_ROWS, TABS } from "../../utils/constant";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
   PencilIcon,
@@ -20,99 +27,38 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
-import { useDispatch, useSelector } from "react-redux";
 
-import { useEffect } from "react";
 
-import PropTypes from "prop-types";
-import { getAllItineraries } from "../../redux/thunk/thunkItinerary";
-const TABS = [
-  {
-    label: "All",
-    value: "all",
-  },
-  {
-    label: "Monitored",
-    value: "monitored",
-  },
-  {
-    label: "Unmonitored",
-    value: "unmonitored",
-  },
-];
 
-const TABLE_HEAD = ["Agent", "Price", "Duration", "Hastag", "Likes", ""];
 
-const TABLE_ROWS = [
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "John Michael",
-    email: "john@creative-tim.com",
-    job: "Manager",
-    org: "Organization",
-    online: true,
-    date: "23/04/18",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    name: "Alexa Liras",
-    email: "alexa@creative-tim.com",
-    job: "Programator",
-    org: "Developer",
-    online: false,
-    date: "23/04/18",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-    name: "Laurent Perrier",
-    email: "laurent@creative-tim.com",
-    job: "Executive",
-    org: "Projects",
-    online: false,
-    date: "19/09/17",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
-    name: "Michael Levi",
-    email: "michael@creative-tim.com",
-    job: "Programator",
-    org: "Developer",
-    online: true,
-    date: "24/12/08",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
-    name: "Richard Gran",
-    email: "richard@creative-tim.com",
-    job: "Manager",
-    org: "Executive",
-    online: false,
-    date: "04/10/21",
-  },
-  {
-    img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
-    name: "Richard Gran",
-    email: "richard@creative-tim.com",
-    job: "Manager",
-    org: "Executive",
-    online: false,
-    date: "04/10/21",
-  },
-];
 
 export const  TableItinery = ({ city, id  }) => {
-  // const billete = Math.floor(Math.random() * 5) + 1;
-  console.log(city, id);
 
+  const [myItinearies, setMyItineraries] = useState([])
+  const {itineraries} = useSelector( store => store.cities.cityFound)
+
+  useEffect( ()=>{
+    setMyItineraries(itineraries)
+  },[])
+  
   const dispach = useDispatch();
 
- // const itinearies = useSelector(store => store.itinearies.data);
-  
-  // useEffect( ()=> {
-  //   dispach( getAllItineraries(id))
-  // }, [itinearies])
 
+  console.log(`Nombre de la ciudad.....: ${city}`);
+  console.log(`Id de la ciudad.........: ${id}`);
+  console.log(`Itinerarios encontrada..: `, itineraries);
+
+
+ const thisItinearies = useSelector(store => store.itinearies.data);
   
+  useEffect( ()=> {
+    dispach(getAllItineraries(itineraries));
+  }, [myItinearies])
+
+
+
+  //const TABLE_Itinearary = TABLE_ROWS;
+  const TABLE_Itinearary = thisItinearies;
 
   return (
     <Card className="h-full w-full">
@@ -175,7 +121,7 @@ export const  TableItinery = ({ city, id  }) => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
+            {TABLE_Itinearary.map(
               ({ img, name, email, job, org, online, date }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast

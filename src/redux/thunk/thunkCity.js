@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { urlApi } from "../../api/Api.js";
 import { setCities, starLoadingCities } from "../slices";
 
