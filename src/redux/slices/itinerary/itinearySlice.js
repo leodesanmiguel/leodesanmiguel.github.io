@@ -8,6 +8,7 @@ export const itinerarySlice = createSlice({
     reducers: {
      setItineraries: (state,action) => {
         state.data = action.payload.data;
+        state.isLoading = false;
      },
      starLoadingItinearies: (state /* action */) => {
         state.isLoading = true;

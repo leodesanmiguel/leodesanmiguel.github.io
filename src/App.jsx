@@ -15,12 +15,22 @@ import { CardCity } from "./pages/cities/CardCity";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllCities } from "./redux/thunk/thunkCity";
+import { SignUp } from "./components/signup/SignUp";
+import { Page404 } from "./pages/404/Page404";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LayoutMain />,
     children: [
+      {
+        path: "*",
+        element: <Page404 />,
+      },
+      {
+        path: "/",
+        element: <Home />,
+      },
       {
         path: "/home",
         element: <Home />,
@@ -44,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: '/signup',
+        element: <SignUp />
       },
     ],
   },

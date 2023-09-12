@@ -1,4 +1,4 @@
-import { urlApi } from "../../api/cityApi";
+import { urlApi } from "../../api/Api.js";
 import { setCountry, starLoadingCountry } from "../slices";
 
 export const getCountry = () => {
