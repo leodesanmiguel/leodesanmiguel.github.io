@@ -8,7 +8,6 @@ import {
 import PropTypes from "prop-types";
 
 export const CitieItem = ({ key, nameCity, imageUrl, country }) => {
-  console.log(key, nameCity, imageUrl, country );
   return (
     <>
       <Card
@@ -43,13 +42,14 @@ export const CitieItem = ({ key, nameCity, imageUrl, country }) => {
         </CardHeader>
         <CardBody className="absolute py-14 px-6 md:px-12">
           <Typography
-            variant="h5"
+            variant="h4"
             color="white"
             className="mb-2 font-medium leading-[1.5]"
           >
-          </Typography>
-          <Typography variant="h6" className="mb-0 text-white-300">
             {nameCity}
+          </Typography>
+          <Typography variant="h6" className="text-white">
+            {country}
           </Typography>
         </CardBody>
       </Card>
@@ -58,11 +58,10 @@ export const CitieItem = ({ key, nameCity, imageUrl, country }) => {
 };
 
 CitieItem.propTypes = {
-  key: PropTypes.string, 
-  nameCity: PropTypes.string, 
-  imageUrl: PropTypes.string, 
+  key: PropTypes.string,
+  nameCity: PropTypes.string,
+  imageUrl: PropTypes.string,
   country: PropTypes.string,
-
 };
 
 /* 
