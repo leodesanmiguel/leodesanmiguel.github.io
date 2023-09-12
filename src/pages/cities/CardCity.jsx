@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { filterOneCityById } from "../../redux/slices";
@@ -22,6 +22,8 @@ import { TableItinery } from "../../common/tableItinery/TableItinery";
 export function CardCity() {
   const { id } = useParams();
 
+  const [myItinearies, setMyItineraries] = useState([]);
+
   const dispatch = useDispatch();
 
   const { data } = useSelector((state) => state.cities);
@@ -32,7 +34,6 @@ export function CardCity() {
     imageUrl,
     rateCity,
     description,
-    // distance,
     country,
     itineraries,
   } = useSelector((state) => state.cities.cityFound);
@@ -42,6 +43,7 @@ export function CardCity() {
     if (data !== undefined || data.length > 0) {
       console.log("ID ciudad: ", id);
       dispatch(filterOneCityById(id));
+      // setMyItineraries(data.cityFound.itineraries);
     }
   }, [nameCity]);
 
@@ -211,10 +213,7 @@ export function CardCity() {
                 <ListPeople />
               </div> */}
               <div className="my-3 bg-blue-gray-500 rounded-lg flex flex-col items-center justify-center">
-                <TableItinery 
-                  city={nameCity}
-                  id={_id}
-                  />
+                <TableItinery itineraries={myItinearies} />
               </div>
               {/* <div className="my-3 flex flex-col items-center justify-center">
                 <AccordionComment />

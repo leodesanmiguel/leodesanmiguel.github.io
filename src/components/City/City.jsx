@@ -9,7 +9,9 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+
 export const City = ({ key, id, nameCity, country, imageUrl }) => {
+
   return (
     <div
       className="

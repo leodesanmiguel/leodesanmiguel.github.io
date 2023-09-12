@@ -13,6 +13,9 @@ export const itinerarySlice = createSlice({
      starLoadingItinearies: (state /* action */) => {
         state.isLoading = true;
       },
+     lista: (state , action ) => {
+        state.data= action.payload;
+      },
     }
 });
-export const { setItineraries } = itinerarySlice.actions;
+export const { setItineraries, starLoadingItinearies } = itinerarySlice.actions;

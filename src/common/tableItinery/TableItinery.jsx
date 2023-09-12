@@ -1,3 +1,4 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
@@ -32,33 +33,27 @@ import {
 
 
 
-export const  TableItinery = ({ city, id  }) => {
+export const  TableItinery = ({ itineraries  }) => {
 
-  const [myItinearies, setMyItineraries] = useState([])
-  const {itineraries} = useSelector( store => store.cities.cityFound)
+  const {lositineraries} = useSelector( store => store.cities.cityFound)
 
-  useEffect( ()=>{
-    setMyItineraries(itineraries)
-  },[])
-  
   const dispach = useDispatch();
 
-
-  console.log(`Nombre de la ciudad.....: ${city}`);
-  console.log(`Id de la ciudad.........: ${id}`);
   console.log(`Itinerarios encontrada..: `, itineraries);
 
 
- const thisItinearies = useSelector(store => store.itinearies.data);
+ // const thisItinearies = useSelector(store => store.itinearies.data);
   
   useEffect( ()=> {
-    dispach(getAllItineraries(itineraries));
-  }, [myItinearies])
+    const lista = getAllItineraries(itineraries)
+    
+    dispach(lista);
+  }, [lositineraries])
 
 
 
   //const TABLE_Itinearary = TABLE_ROWS;
-  const TABLE_Itinearary = thisItinearies;
+  const TABLE_Itinearary = lositineraries;
 
   return (
     <Card className="h-full w-full">
@@ -227,7 +222,7 @@ export const  TableItinery = ({ city, id  }) => {
 
 
 TableItinery.propTypes = {
-  city: PropTypes.string,
-  id: PropTypes.string,
+  itineraries: PropTypes.object
+
 };
 
