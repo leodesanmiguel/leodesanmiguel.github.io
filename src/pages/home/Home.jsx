@@ -12,6 +12,8 @@ import {
 const { titulo, subtitulo } = textHero;
 
 export const Home = () => {
+
+  
   return (
     <>
       <Hero title={titulo} subtitle={subtitulo} />

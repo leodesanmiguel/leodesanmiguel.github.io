@@ -1,49 +1,55 @@
-import {
-  IconButton,
-} from "@material-tailwind/react";
-import { cities } from "../../common/constants";
+import { IconButton } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { CitieItem } from "./citieItem";
 
-const fnNext = (n) => (n === cities.length - 1 ? 0 : n + 1);
-const fnPrev = (n) => (n === 0 ? cities.length - 1 : n - 1);
-console.log(`\n
-Cantidad de Ciudades.: ${cities.length}\n
-Ultima ciudad .......: ${cities.length - 1}`);
-
 export const Carrousel = () => {
-  const [indice0, setIndice0] = useState(0);
-  const [indice1, setIndice1] = useState(indice0 + 1);
-  const [indice2, setIndice2] = useState(indice1 + 1);
-  const [indice3, setIndice3] = useState(indice2 + 1);
+  const [indiceP, setIndiceP] = useState(0);
+  const [packCarrousel, setPackCarrousel] = useState([]);
+
+  const listcities = useSelector((store) => store.cities.data);
+
+  useEffect(() => {
+    console.log(listcities[indiceP], listcities[indiceP + 3]);
+    setPackCarrousel(listcities.filer((city,indiceP) =>  city[indiceP] ));
+    console.log(`\n
+  ... Cantidad de Ciudades.: ${packCarrousel.length}
+  ... Ultima ciudad .......: ${packCarrousel.length - 1}`);
+  }, []);
+
   const [mueve, setMueve] = useState(0);
 
   const handlePrev = () => {
-    setIndice0(fnPrev(indice0));
-    setIndice1(fnPrev(indice1));
-    setIndice2(fnPrev(indice2));
-    setIndice3(fnPrev(indice3));
-    setMueve(mueve - 1);
+    if (indiceP <= 0) {
+      return setIndiceP(packCarrousel.length - 4);
+    }
+    setMueve(mueve - 4);
+
+    return setIndiceP(indiceP - 4);
   };
 
   const handleNext = () => {
-    setIndice0(fnNext(indice0));
-    setIndice1(fnNext(indice1));
-    setIndice2(fnNext(indice2));
-    setIndice3(fnNext(indice3));
-    setMueve(mueve + 1);
+    if (indiceP >= packCarrousel.length - 4) {
+      return setIndiceP(0);
+    }
+
+    setMueve(mueve + 4);
+
+    return setIndiceP(indiceP + 4);
   };
 
   useEffect(() => {
-    console.log(indice0, indice1, indice2, indice3);
+    console.log(`ciudad desde ${indiceP} hasta ${indiceP + 3}`);
   }, [mueve]);
 
   return (
     <>
-      <div className=" 
-        bg-white-500 w-full h-auto flex mb-[5rem]
-        flex-row justify-between items-center">
       <div
+        className=" 
+        bg-white-500 w-full h-auto flex mb-[5rem]
+        flex-row justify-between items-center"
+      >
+        <div
           className="
           bg-transparent 
           mx-1 w-8 p-1 h-full
@@ -78,10 +84,14 @@ export const Carrousel = () => {
           mx-1 w-full p-1 h-[25vh]
           flex flex-wrap gap-4 justify-between "
         >
-          <CitieItem item={cities[indice0]} />
-          <CitieItem item={cities[indice1]} />
-          <CitieItem item={cities[indice2]} />
-          <CitieItem item={cities[indice3]} />
+          {packCarrousel.map(({ nameCity, imageUrl, _id, country }) => (
+            <CitieItem
+              key={_id}
+              nameCity={nameCity}
+              imageUrl={imageUrl}
+              country={country}
+            />
+          ))}
         </div>
         <div
           className="
