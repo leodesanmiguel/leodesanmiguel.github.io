@@ -1,19 +1,10 @@
-
-
-import { 
-  Hero, 
-  CallToAction, 
-  textHero, 
-  Carrousel
-} from "../Mycomponents";
+import { Hero, CallToAction, textHero, Carrousel } from "../Mycomponents";
 
 // import Muestra from "../../components/muetra/Muestra";
 
 const { titulo, subtitulo } = textHero;
 
 export const Home = () => {
-
-  
   return (
     <>
       <Hero title={titulo} subtitle={subtitulo} />
@@ -28,4 +19,3 @@ export const Home = () => {
     </>
   );
 };
-

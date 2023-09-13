@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from "prop-types";
 import {MenuList} from "./MenuList";
 import {MenuItem} from "./MenuItem";
-import {  Fragment } from "react";
+import {  Fragment, useState } from "react";
 
 export const MenuBar = ({links}) => {
+  const [isActive, setIsActive] = useState(true);
+
   return (
     <MenuList>
       {
@@ -15,11 +18,11 @@ export const MenuBar = ({links}) => {
           )
         })
       }
-      <MenuItem href={"/home"} isActive={true}>
+      <MenuItem href={"/home"} isActive={isActive}>
         Home
       </MenuItem>
-      <MenuItem href={"/cities"}  >Cities</MenuItem>
-      <MenuItem href={"/about-us"}>About us</MenuItem>
+      <MenuItem href={"/cities"}  isActive={isActive} >Cities </MenuItem>
+      <MenuItem href={"/about-us"} isActive={isActive} >About us</MenuItem>
     </MenuList>
   );
 };
