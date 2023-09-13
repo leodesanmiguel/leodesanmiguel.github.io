@@ -1,27 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialStateHome = {
-    title:"The Popular Cities ",
-    description:"The best cities visited by our customers.",
-}
+const initialState = {
+  titlesCall: {
+    title: "The Popular Cities ",
+    description: "The best cities visited by our customers.",
+    id: "carousel",
+    cardId: { nro: 0 },
+  },
+  textHero: {
+    titulo: "My Tinerary",
+    subtitulo:
+      "This website allows you to visit different cities in the world in a very real way.",
+  },
+  links: [
+    { value: "/", content: "Home", id: 1, isActive: false },
+    { value: "/cities", content: "Cities", id: 2, isActive: false },
+    { value: "/about-us", content: "About Us", id: 3, isActive: false },
+  ],
+  home: 0,
+};
 
 export const homeSlice = createSlice({
-  name: 'home',
-  initialStateHome,
+  name: "home",
+  initialState,
   reducers: {
     titles: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.home += 1
+      state.home += 1;
     },
-   
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { increment } = homeSlice.actions;
-
-
-
+export const { titles } = homeSlice.actions;

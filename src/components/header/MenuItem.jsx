@@ -6,10 +6,10 @@ export const MenuItem = ({ href, isActive, children }) => {
       <Link
         to={href}
         className={`px-3 
-          hover:bg-sky-800 hover:text-blue-100 bg-transparent
+          hover:bg-sky-100 hover:text-blue-900 bg-transparent
           ${isActive ? 
-            "bg-sky-500 text-white" 
-            : "bg-slate-50"
+            "bg-sky-100 text-white" 
+            : "bg-slate-10"
         }`}
       >
         {children}
