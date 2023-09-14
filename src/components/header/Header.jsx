@@ -8,7 +8,7 @@ import {
   Navbar,
   Typography,
 } from "@material-tailwind/react";
-import { links } from "../links";
+import { useSelector } from "react-redux";
 
 
 
@@ -16,16 +16,18 @@ import { links } from "../links";
 export const Header = () => {
   const [openNav, setOpenNav] = useState(false);
 
+  const links = useSelector((state) => state.home.links)
+
   useEffect(() => {
     "resize", () => window.innerWidth >= 768 && setOpenNav(false);
   }, []);
 
+
   const navList = (
     <> 
-    {console.log(`NAVList: ${links} `)}
       <div className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
         <MenuBar links={links} />
-        <Login   links={links} />
+        <Login    />
       </div>
     </>
   );

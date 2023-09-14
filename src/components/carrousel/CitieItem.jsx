@@ -7,11 +7,11 @@ import {
 //import { cities } from "../../common/constants";
 import PropTypes from "prop-types";
 
-export const CitieItem = ({ item }) => {
-   const { imagenUrl, description, caption } = item;
+export const CitieItem = ({ key, nameCity, imageUrl, country }) => {
   return (
     <>
       <Card
+        key={key}
         shadow={false}
         className="
           realtive 
@@ -29,22 +29,27 @@ export const CitieItem = ({ item }) => {
           shadow={false}
           className={`absolute inset-0 m-0 h-full w-full rounded-2 bg-cover bg-center`}
         >
-          <div className="to-bg-black-10 absolute 
-          inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 cover bg-center" >
-
-          <img src={imagenUrl} alt={caption}  className="object-cover object-center w-full h-full " />
+          <div
+            className="to-bg-black-10 absolute 
+          inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 cover bg-center"
+          >
+            <img
+              src={imageUrl}
+              alt={nameCity}
+              className="object-cover object-center w-full h-full "
+            />
           </div>
         </CardHeader>
         <CardBody className="absolute py-14 px-6 md:px-12">
           <Typography
-            variant="h5"
+            variant="h4"
             color="white"
             className="mb-2 font-medium leading-[1.5]"
           >
-            {`Foto Nº ${item}`} {caption}
+            {nameCity}
           </Typography>
-          <Typography variant="h6" className="mb-0 text-white-300">
-            {description}
+          <Typography variant="h6" className="text-white">
+            {country}
           </Typography>
         </CardBody>
       </Card>
@@ -53,7 +58,10 @@ export const CitieItem = ({ item }) => {
 };
 
 CitieItem.propTypes = {
-  item: PropTypes.string,
+  key: PropTypes.string,
+  nameCity: PropTypes.string,
+  imageUrl: PropTypes.string,
+  country: PropTypes.string,
 };
 
 /* 

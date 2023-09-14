@@ -1,9 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllItineraries } from "../../redux/thunk/thunkItinerary";
-
 import { TABLE_HEAD, TABLE_ROWS, TABS } from "../../utils/constant";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
@@ -28,37 +24,8 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 
-
-
-
-
-export const  TableItinery = ({ city, id  }) => {
-
-  const [myItinearies, setMyItineraries] = useState([])
-  const {itineraries} = useSelector( store => store.cities.cityFound)
-
-  useEffect( ()=>{
-    setMyItineraries(itineraries)
-  },[])
-  
-  const dispach = useDispatch();
-
-
-  console.log(`Nombre de la ciudad.....: ${city}`);
-  console.log(`Id de la ciudad.........: ${id}`);
-  console.log(`Itinerarios encontrada..: `, itineraries);
-
-
- const thisItinearies = useSelector(store => store.itinearies.data);
-  
-  useEffect( ()=> {
-    dispach(getAllItineraries(itineraries));
-  }, [myItinearies])
-
-
-
-  //const TABLE_Itinearary = TABLE_ROWS;
-  const TABLE_Itinearary = thisItinearies;
+export const TableItinery = ({ itineraries }) => {
+  const TABLE_Itinearary = itineraries;
 
   return (
     <Card className="h-full w-full">
@@ -122,7 +89,7 @@ export const  TableItinery = ({ city, id  }) => {
           </thead>
           <tbody>
             {TABLE_Itinearary.map(
-              ({ img, name, email, job, org, online, date }, index) => {
+              ({ img, nameItinerary, email, price, org, online, date }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
@@ -139,7 +106,7 @@ export const  TableItinery = ({ city, id  }) => {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {name}
+                            {nameItinerary}
                           </Typography>
                           <Typography
                             variant="small"
@@ -153,26 +120,16 @@ export const  TableItinery = ({ city, id  }) => {
                     </td>
                     <td className={classes}>
                       <div className="flex flex-row flex-wrap w-[80px]">
-                        
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        {/* <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {job}
-                        </Typography>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal opacity-70"
-                        >
-                          {org}
-                        </Typography> */}
+                        {(
+                        (price) => {
+                          let bil = ''
+                          for (let i=0; i<=price;i++){
+                           bil= bil + `<BanknotesIcon color="green" className="w-6" />`
+                          }        
+                          
+                        }
+                        )}
+          
                       </div>
                     </td>
                     <td className={classes}>
@@ -223,11 +180,8 @@ export const  TableItinery = ({ city, id  }) => {
       </CardFooter>
     </Card>
   );
-}
-
-
-TableItinery.propTypes = {
-  city: PropTypes.string,
-  id: PropTypes.string,
 };
 
+TableItinery.propTypes = {
+  itineraries: PropTypes.object,
+};

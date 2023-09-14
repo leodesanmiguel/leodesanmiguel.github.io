@@ -1,49 +1,63 @@
-import {
-  IconButton,
-} from "@material-tailwind/react";
-import { cities } from "../../common/constants";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import { IconButton } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { CitieItem } from "./citieItem";
 
-const fnNext = (n) => (n === cities.length - 1 ? 0 : n + 1);
-const fnPrev = (n) => (n === 0 ? cities.length - 1 : n - 1);
-console.log(`\n
-Cantidad de Ciudades.: ${cities.length}\n
-Ultima ciudad .......: ${cities.length - 1}`);
-
 export const Carrousel = () => {
-  const [indice0, setIndice0] = useState(0);
-  const [indice1, setIndice1] = useState(indice0 + 1);
-  const [indice2, setIndice2] = useState(indice1 + 1);
-  const [indice3, setIndice3] = useState(indice2 + 1);
-  const [mueve, setMueve] = useState(0);
+  const [indiceP, setIndiceP] = useState(0);
+  const [finP, setFinP] = useState(indiceP + 3);
+  const [packCarrousel, setPackCarrousel] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const listCities = useSelector((store) => store.cities.data);
+
+  useEffect(() => {
+    setPackCarrousel(
+      listCities.filter((c, i) => i >= indiceP && i <= indiceP + 3)
+    );
+  }, [indiceP]);
 
   const handlePrev = () => {
-    setIndice0(fnPrev(indice0));
-    setIndice1(fnPrev(indice1));
-    setIndice2(fnPrev(indice2));
-    setIndice3(fnPrev(indice3));
-    setMueve(mueve - 1);
+    const hasta = indiceP;
+    if (indiceP <= 0) {
+      setIndiceP(listCities.length - 4);
+    } else {
+      setIndiceP(hasta - 4);
+    }
   };
 
   const handleNext = () => {
-    setIndice0(fnNext(indice0));
-    setIndice1(fnNext(indice1));
-    setIndice2(fnNext(indice2));
-    setIndice3(fnNext(indice3));
-    setMueve(mueve + 1);
+    const hasta = indiceP;
+    if (indiceP >= listCities.length - 4) {
+      setIndiceP(0);
+    } else {
+      setIndiceP(hasta + 4);
+    }
   };
 
   useEffect(() => {
-    console.log(indice0, indice1, indice2, indice3);
-  }, [mueve]);
+    const interval = setInterval(() => {
+      // Avanzar al siguiente índice de ciudad
+      // setCurrentIndex((prevIndex) => (prevIndex + 1) % 4);
+      setIndiceP((prevIndex) => (prevIndex + 1) % 4);
+    }, 3000); // Cambiar de ciudad cada 3 segundos (ajusta el valor según tus preferencias)
+
+    return () => {
+      // Limpia el intervalo cuando el componente se desmonta
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <>
-      <div className=" 
-        bg-white-500 w-full h-auto flex mb-[5rem]
-        flex-row justify-between items-center">
       <div
+        className=" 
+        bg-white-500 w-full h-auto flex mb-[5rem]
+        flex-row justify-between items-center"
+      >
+        <div
           className="
           bg-transparent 
           mx-1 w-8 p-1 h-full
@@ -78,10 +92,16 @@ export const Carrousel = () => {
           mx-1 w-full p-1 h-[25vh]
           flex flex-wrap gap-4 justify-between "
         >
-          <CitieItem item={cities[indice0]} />
-          <CitieItem item={cities[indice1]} />
-          <CitieItem item={cities[indice2]} />
-          <CitieItem item={cities[indice3]} />
+          {packCarrousel.map(({ nameCity, imageUrl, _id, countryName }, i) => {
+            return (
+              <CitieItem
+                key={_id}
+                nameCity={nameCity}
+                imageUrl={imageUrl}
+                country={countryName}
+              />
+            );
+          })}
         </div>
         <div
           className="

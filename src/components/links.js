@@ -7,14 +7,14 @@ export const links = [
 export const LinksFooter = [
   {
     title: "Cities",
-    items: ["Search", "Listing"],
+    items: ["Search", "Listing", "Itineraries"],
   },
   {
-    title: "Company",
-    items: ["About us", "Careers", "Press", "News"],
+    title: "Countries",
+    items: ["About us", "Flags", "Continent", "Codes"],
   },
   {
-    title: "Resource",
-    items: ["Blog", "Newsletter", "Events", "Help center"],
+    title: "Users",
+    items: ["Blog", "Admin", "Update", "Help center"],
   },
 ];
