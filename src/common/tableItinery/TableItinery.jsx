@@ -1,10 +1,5 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllItineraries } from "../../redux/thunk/thunkItinerary";
-
 import { TABLE_HEAD, TABLE_ROWS, TABS } from "../../utils/constant";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
@@ -29,31 +24,8 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 
-
-
-
-
-export const  TableItinery = ({ itineraries  }) => {
-
-  const {lositineraries} = useSelector( store => store.cities.cityFound)
-
-  const dispach = useDispatch();
-
-  console.log(`Itinerarios encontrada..: `, itineraries);
-
-
- // const thisItinearies = useSelector(store => store.itinearies.data);
-  
-  useEffect( ()=> {
-    const lista = getAllItineraries(itineraries)
-    
-    dispach(lista);
-  }, [lositineraries])
-
-
-
-  //const TABLE_Itinearary = TABLE_ROWS;
-  const TABLE_Itinearary = lositineraries;
+export const TableItinery = ({ itineraries }) => {
+  const TABLE_Itinearary = itineraries;
 
   return (
     <Card className="h-full w-full">
@@ -117,7 +89,7 @@ export const  TableItinery = ({ itineraries  }) => {
           </thead>
           <tbody>
             {TABLE_Itinearary.map(
-              ({ img, name, email, job, org, online, date }, index) => {
+              ({ img, nameItinerary, email, price, org, online, date }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
@@ -134,7 +106,7 @@ export const  TableItinery = ({ itineraries  }) => {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {name}
+                            {nameItinerary}
                           </Typography>
                           <Typography
                             variant="small"
@@ -148,26 +120,16 @@ export const  TableItinery = ({ itineraries  }) => {
                     </td>
                     <td className={classes}>
                       <div className="flex flex-row flex-wrap w-[80px]">
-                        
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        <BanknotesIcon color="green" className="w-6" />
-                        {/* <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {job}
-                        </Typography>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal opacity-70"
-                        >
-                          {org}
-                        </Typography> */}
+                        {(
+                        (price) => {
+                          let bil = ''
+                          for (let i=0; i<=price;i++){
+                           bil= bil + `<BanknotesIcon color="green" className="w-6" />`
+                          }        
+                          
+                        }
+                        )}
+          
                       </div>
                     </td>
                     <td className={classes}>
@@ -218,11 +180,8 @@ export const  TableItinery = ({ itineraries  }) => {
       </CardFooter>
     </Card>
   );
-}
-
-
-TableItinery.propTypes = {
-  itineraries: PropTypes.object
-
 };
 
+TableItinery.propTypes = {
+  itineraries: PropTypes.object,
+};

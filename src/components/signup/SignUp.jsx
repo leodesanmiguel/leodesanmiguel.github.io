@@ -5,43 +5,79 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { urlApi } from "../../api/Api";
 import { iconGoogle } from "../../utils/constant";
+import { current } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/slices/user/userSlice";
 
 export function SignUp() {
-  const [data, setData] = useState({
-    nameUser: "",
-    email: "",
-    password: "",
-    gender: "",
-    terms: false,
-  });
+  const nameUser = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  const gender = useRef(null);
 
-  const handleChangeData = (e) => {
-    setData((prevState) => {
-      return e.target.name === "terms"
-        ? {
-            ...prevState,
-            [e.target.name]: e.target.checked,
-          }
-        : {
-            ...prevState,
-            [e.target.name]: e.target.value,
-          };
-    });
-  };
+  const inputs = useRef(null);
 
-  const handleSubmitData = async (e) => {
+  const dispach = useDispatch();
+  //   const [data, setData] = useState({
+  //     nameUser: "",
+  //     email: "",
+  //     password: "",
+  //     gender: "",
+  //     terms: false,
+  //   });
+
+  // const handleChangeData = (e) => {
+  //   setData((prevState) => {
+  //     return e.target.name === "terms"
+  //       ? {
+  //           ...prevState,
+  //           [e.target.name]: e.target.checked,
+  //         }
+  //       : {
+  //           ...prevState,
+  //           [e.target.name]: e.target.value,
+  //         };
+  //   });
+  // };
+
+  const handleSubmitData = async  (e) => {
     e.preventDefault();
-    const userData = { ...data };
-    console.log("user DATA: \n", userData);
-    if (userData.terms) {
-      delete userData.terms;
-      const res = await urlApi.post("/auth", userData);
-      console.log("RESPUESTA DE AXIOS: \n", res);
-    }
+    const data = Object.fromEntries(new FormData(inputs.current));
+
+    await urlApi.post(`/auth`, data)
+      .then(response => {
+        console.log(response.data)
+
+        localStorage.setItem("token", response.data.token)
+
+        dispach(setUser(response.data.userData ))
+
+
+
+      })
+      .catch(error => console.log(error))
+
+      
+    // const data = {
+
+    //   nameUser: nameUser.current.value,
+    //   email: email.current.value,
+    //   password: password.current.value,
+    //   gender: gender.current.value,
+    // };
+    console.log(data);
+
+    // const userData = { ...data };
+    // console.log("user DATA: \n", userData);
+    // if (userData.terms) {
+    //   delete userData.terms;
+    //   const res = await urlApi.post("/auth", userData);
+    //   console.log("RESPUESTA DE AXIOS: \n", res);
+    // }
   };
 
   return (
@@ -69,37 +105,34 @@ export function SignUp() {
         role="form"
         className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
         onSubmit={handleSubmitData}
+        ref={inputs}
       >
         <div className="mb-4 flex flex-col gap-6">
           <Input
             name="nameUser"
             type="text"
-            onChange={handleChangeData}
-            value={data.nameUser}
+            // ref={nameUser}
             size="lg"
             label="Name User"
           />
           <Input
             name="email"
             type="email"
-            onChange={handleChangeData}
-            value={data.email}
+            // ref={email}
             size="lg"
             label="Email"
           />
           <Input
             name="password"
             type="password"
-            onChange={handleChangeData}
-            value={data.password}
+            // ref={password}
             size="lg"
             label="Password"
           />
           <Input
             name="gender"
             type="text"
-            onChange={handleChangeData}
-            value={data.gender}
+            // ref={gender}
             size="lg"
             label="Gender"
           />
@@ -107,8 +140,7 @@ export function SignUp() {
         <Checkbox
           name="terms"
           type="checkbox"
-          onChange={handleChangeData}
-          value={data.terms}
+      
           label={
             <Typography
               variant="small"

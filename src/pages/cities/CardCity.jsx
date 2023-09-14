@@ -37,25 +37,14 @@ export function CardCity() {
     country,
     itineraries,
   } = useSelector((state) => state.cities.cityFound);
-  console.log(
-    'detalle de cada ciudad: \n', 
-    '\n_id: ',_id,
-    '\nnameCity: ',nameCity,
-    '\nimageUrl: ',imageUrl,
-    '\nrateCity: ',rateCity,
-    '\ndescription: ',description,
-    '\ncountry: ',country,
-    '\nitineraries: ',itineraries,
-  );
   useEffect(() => {
     console.log("paquete", data);
     if (data !== undefined || data.length > 0) {
-      console.log("ID ciudad: ", id);
       dispatch(filterOneCityById(id));
-      // setMyItineraries(data.cityFound.itineraries);
     }
   }, [nameCity]);
 
+  // const {itineraries} = useSelector((state)=> state.cities.cityFound)
   return (
     <>
       {nameCity && nameCity ? (
@@ -126,14 +115,17 @@ export function CardCity() {
                 <RatingRO raiting={rateCity % 5} />
               </div>
               <Typography color="gray">{description}</Typography>
-              
-              <div className="my-3 bg-blue-gray-500 rounded-lg flex flex-col items-center justify-center">
-                {/* <TableItinery itineraries={myItinearies} /> */}
-              </div>
 
+              <div className="my-3 bg-blue-gray-500 rounded-lg flex flex-col items-center justify-center">
+                { itineraries && itineraries.length > 0 ? (
+                  <TableItinery itineraries={itineraries} />
+                ) : (
+                  <SpinnerC />
+                )}
+              </div>
             </CardBody>
             <CardFooter className="pt-3">
-              <SpinnerC />
+              {/* <SpinnerC /> */}
               <Link to={"/cities"} className="">
                 <Button className="my-[2rem] " fullWidth={true} size="lg">
                   Return to City List

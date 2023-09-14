@@ -17,6 +17,8 @@ import { useEffect } from "react";
 import { getAllCities } from "./redux/thunk/thunkCity";
 import { SignUp } from "./components/signup/SignUp";
 import { Page404 } from "./pages/404/Page404";
+import { urlApi } from "./api/Api";
+import { setAuth, setUser } from "./redux/slices/user/userSlice";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +72,26 @@ function App() {
  
   useEffect(() => {
     dispach(getAllCities());
+    let token = localStorage.getItem("token");
+    urlApi.post(`/auth/token`, null, {
+      headers:{
+        Authorization: "Bearer "+token
+      }
+    })
+    .then(response => {
+      console.log(token)
+
+      localStorage.setItem("token", token)
+      //localStorage.removeItem("token")
+
+      dispach(setAuth(response.data.userData ))
+
+      
+
+
+    })
+    .catch(error => console.log(error))
+
   }, []);
 
 
