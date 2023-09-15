@@ -75,6 +75,6 @@ export const iconGoogle =
   ];
   
 
-  export const TABLE_HEAD = ["Agent", "Price", "Duration", "Hastag", "Likes", ""];
+  export const TABLE_HEAD = ["Agent", "Price", "Duration", "Hastag", "", ""];
 
   

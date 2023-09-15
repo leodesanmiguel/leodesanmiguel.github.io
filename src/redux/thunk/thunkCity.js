@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { urlApi } from "../../api/Api.js";
-import { setCities, starLoadingCities } from "../slices";
+import { setCities, setCityById, starLoadingCities } from "../slices";
 
 export const getAllCities = (page = 0) => {
   // dispach : es para el dispach de otra accion
@@ -17,6 +17,19 @@ export const getAllCities = (page = 0) => {
         data: data.cities,
         page: page + 1,
         counter: data.cities.length,
+      })
+    );
+  };
+};
+export const getCityById = (id) => {
+  return async (dispach, getState) => {
+
+    const { data } = await urlApi.get(`/cities/${id}`);
+    console.log('DATA de ciudad byID: -->' , data);
+    // hace otro dispach para recargar todas las ciudades encontradas
+    dispach(
+      setCityById({
+        data: data.citybyid,
       })
     );
   };

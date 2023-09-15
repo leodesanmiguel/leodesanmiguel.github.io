@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { filterOneCityById } from "../../redux/slices";
@@ -12,39 +12,40 @@ import {
   Button,
   // Tooltip,
   IconButton,
+  Alert,
 } from "@material-tailwind/react";
 import { RatingRO } from "../../common/raiting/RaitingRO";
-// import { ListPeople } from "../../common/listPeople/ListPeople";
-// import { AccordionComment } from "../../common/accordion/accordionComment";
 import { SpinnerC } from "../../common/spinner/SpinnerC";
 import { TableItinery } from "../../common/tableItinery/TableItinery";
+import { getCityById } from "../../redux/thunk/thunkCity";
 
 export function CardCity() {
   const { id } = useParams();
-
-  const [myItinearies, setMyItineraries] = useState([]);
 
   const dispatch = useDispatch();
 
   const { data } = useSelector((state) => state.cities);
 
-  const {
-    _id,
-    nameCity,
-    imageUrl,
-    rateCity,
-    description,
-    country,
-    itineraries,
-  } = useSelector((state) => state.cities.cityFound);
+  const { nameCity, country, imageUrl, rateCity, description, itineraries } =
+    useSelector((state) => state.cities.cityById);
+
+  // console.log("CIUDAD DEVUELTA POR REDUX :>>>", {
+  //   nameCity,
+  //   country,
+  //   imageUrl,
+  //   rateCity,
+  //   description,
+  //   itineraries,
+  // });
+
   useEffect(() => {
-    console.log("paquete", data);
+    dispatch(getCityById(id));
+
     if (data !== undefined || data.length > 0) {
       dispatch(filterOneCityById(id));
     }
   }, [nameCity]);
 
-  // const {itineraries} = useSelector((state)=> state.cities.cityFound)
   return (
     <>
       {nameCity && nameCity ? (
@@ -117,10 +118,13 @@ export function CardCity() {
               <Typography color="gray">{description}</Typography>
 
               <div className="my-3 bg-blue-gray-500 rounded-lg flex flex-col items-center justify-center">
-                { itineraries && itineraries.length > 0 ? (
+                {itineraries && itineraries.length > 0 ? (
                   <TableItinery itineraries={itineraries} />
                 ) : (
-                  <SpinnerC />
+                  <div className="flex w-full flex-col gap-2">
+
+                  <Alert color="red" className="text-center">We have not been able to find loaded itineraries.</Alert>
+                  </div>
                 )}
               </div>
             </CardBody>
