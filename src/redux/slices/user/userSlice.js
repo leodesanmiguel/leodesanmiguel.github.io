@@ -4,6 +4,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     user: null,
+    isLogged: false,
   },
 
   reducers: {
@@ -14,11 +15,18 @@ export const userSlice = createSlice({
 
     setAuth: (state, action) => {
       state.user = action.payload;
+      state.isLogged = true;
     },
 
-    // starLoadingUser: (state /* action */) => {
-    //   state.isLoading = true;
-    // },
+    startingLogin: (state, action) => {
+      state.isLogged = action.payload.logged;
+      console.log('activa el logueado', action.payload );
+    },
+    startingLogout: (state) => {
+      console.log('DESACTIVA EL LOGUEADO - BOORA TODO');
+      state.user = null
+      state.isLogged = false
+    },
 
     // filterOneuserById: (state, action) => {
     //   state.userFound = state.data.find((user) => user._id === action.payload);
@@ -28,4 +36,9 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUser, setAuth } = userSlice.actions;
+export const { 
+  setUser, 
+  setAuth, 
+  startingLogin, 
+  startingLogout } =
+  userSlice.actions;
