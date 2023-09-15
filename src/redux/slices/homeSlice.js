@@ -27,6 +27,7 @@ export const homeSlice = createSlice({
     titles: (state) => {
       state.home += 1;
     },
+    
   },
 });
 

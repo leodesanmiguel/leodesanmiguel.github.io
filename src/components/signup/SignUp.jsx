@@ -8,7 +8,7 @@ import {
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { urlApi } from "../../api/Api";
-import { iconGoogle } from "../../utils/constant";
+
 import { current } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/user/userSlice";
@@ -92,15 +92,7 @@ export function SignUp() {
       <Typography color="gray" className="mt-1 font-normal">
         Enter your details to register. Or
       </Typography>
-      <Button
-        size="lg"
-        variant="outlined"
-        color="blue-gray"
-        className="flex items-center gap-3"
-      >
-        <img src={iconGoogle} alt="metamask" className="h-6 w-6" />
-        Continue with Google
-      </Button>
+
       <form
         role="form"
         className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
@@ -165,7 +157,7 @@ export function SignUp() {
 
         <Typography color="gray" className="mt-4 text-center font-normal">
           Already have an account?{" "}
-          <a href="#" className="font-medium text-gray-900">
+          <a href="/signin" className="font-medium text-gray-900">
             Sign In
           </a>
         </Typography>

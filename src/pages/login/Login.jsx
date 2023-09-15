@@ -1,13 +1,10 @@
-import { SignUp } from "../../components/signup/SignUp";
-// import { SignUp2 } from "../../components/signup/SignUp2";
-// import { SignUp_1 } from "../../components/signup/SignUp_1";
-
-
+import { SignIn } from "../../components/signIn/SignIn";
 
 export const Login = () => {
-  return( <>
- 
- <SignUp />
-  </>);
+  localStorage.removeItem("token")
+  return (
+    <>
+      <SignIn />
+    </>
+  );
 };
-

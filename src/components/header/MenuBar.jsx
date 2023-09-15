@@ -23,11 +23,7 @@ export const MenuBar = ({ links }) => {
           </Fragment>
         );
       })}
-      {/* <MenuItem href={"/home"} isActive={isActive}>
-        Home
-        </MenuItem>
-        <MenuItem href={"/cities"}  isActive={isActive} >Cities </MenuItem>
-      <MenuItem href={"/about-us"} isActive={isActive} >About us</MenuItem> */}
+
     </MenuList>
   );
 };

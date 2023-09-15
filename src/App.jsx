@@ -18,7 +18,10 @@ import { getAllCities } from "./redux/thunk/thunkCity";
 import { SignUp } from "./components/signup/SignUp";
 import { Page404 } from "./pages/404/Page404";
 import { urlApi } from "./api/Api";
-import { setAuth, setUser } from "./redux/slices/user/userSlice";
+import { setAuth, startingLogin } from "./redux/slices/user/userSlice";
+import { SignIn } from "./components/signIn/SignIn";
+import {  LoggedIn2 } from "./components/signIn/LoggedIn2";
+import { LoggedIn1 } from "./components/signIn/LoggedIn1";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +59,18 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: '/loggedin1',
+        element: <LoggedIn1 />
+      },
+      {
+        path: '/loggedin2',
+        element: <LoggedIn2 />
+      },
+      {
+        path: '/signin',
+        element: <SignIn />
       },
       {
         path: '/signup',
