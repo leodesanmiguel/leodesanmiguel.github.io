@@ -26,6 +26,31 @@ import {
 
 export const TableItinery = ({ itineraries }) => {
   const TABLE_Itinearary = itineraries;
+  console.log(">->->->->->->ITINERARIO. \n", itineraries);
+
+  const banknotes = (price) => {
+    const banks = [];
+    for (let i = 0; i < price; i++) {
+      banks.push(<BanknotesIcon key={i} color="green" className="w-6" />);
+    }
+    return banks;
+  };
+
+  const horas = (minutos) => (minutos / 60).toPrecision(2).toString();
+
+  const getColorByDuration = (duration) => {
+    if (duration <= 60) {
+      return "green-400";
+    } else if (duration > 60 && duration <= 160) {
+      return "lime-400";
+    } else if (duration > 160 && duration <= 260) {
+      return "yellow-300";
+    } else if (duration > 260 && duration <= 460) {
+      return "orange-400";
+    } else {
+      return "red-500";
+    }
+  };
 
   return (
     <Card className="h-full w-full">
@@ -89,76 +114,102 @@ export const TableItinery = ({ itineraries }) => {
           </thead>
           <tbody>
             {TABLE_Itinearary.map(
-              ({ img, nameItinerary, email, price, org, online, date }, index) => {
+              (
+                {
+                  nameItinerary,
+                  price,
+                  duration,
+                  hashtags,
+                  agent,
+                  commentaries,
+                },
+                index
+              ) => {
+                console.log(">>>>>>>>>>>> A-G-E-N-T-E \n", agent);
+                console.log("-------> comentarios---> \n", commentaries);
+
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={name}>
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar src={img} alt={name} size="sm" />
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                          >
-                            {nameItinerary}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal opacity-70"
-                          >
-                            {email}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <div className="flex flex-row flex-wrap w-[80px]">
-                        {(
-                        (price) => {
-                          let bil = ''
-                          for (let i=0; i<=price;i++){
-                           bil= bil + `<BanknotesIcon color="green" className="w-6" />`
-                          }        
-                          
-                        }
-                        )}
-          
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <div className="w-max">
-                        <Chip
-                          variant="ghost"
-                          size="sm"
-                          value={online ? "online" : "offline"}
-                          color={online ? "green" : "blue-gray"}
-                        />
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
+                  <>
+                    <tr className="order-b border-success-200 bg-success text-neutral-800 ">
+                      <td
+                        colSpan="5"
+                        className="whitespace-nowrap px-6 py-4 font-medium"
                       >
-                        {date}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Tooltip content="Edit User">
-                        <IconButton variant="text">
-                          <PencilIcon className="h-4 w-4" />
-                        </IconButton>
-                      </Tooltip>
-                    </td>
-                  </tr>
+                        <Typography variant="h4">{nameItinerary}</Typography>
+                      </td>
+                    </tr>
+                    <tr key={name}>
+                      <td className={classes}>
+                        <div className="flex items-center gap-3">
+                          <Avatar src={agent.photoUrl} alt={name} size="sm" />
+                          <div className="flex flex-col">
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-normal"
+                            >
+                              {agent.namePeople}
+                            </Typography>
+                            <Typography
+                              variant="small"
+                              color="blue-gray"
+                              className="font-normal opacity-70"
+                            >
+                              {agent.email}
+                            </Typography>
+                          </div>
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div className="flex flex-row flex-wrap w-[80px]">
+                          {price === 0 ? (
+                            <img
+                              src="https://us.123rf.com/450wm/ahasoft2000/ahasoft20001703/ahasoft2000170301122/73923156-icono-de-trama-de-etiqueta-gratuita-s%C3%ADmbolo-plano-con-gradiente-pictogram-est%C3%A1-aislado-en-un-fondo.jpg"
+                              alt=""
+                            />
+                          ) : (
+                            banknotes(price)
+                          )}
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div className="w-max">
+                          <Chip
+                            variant="ghost"
+                            size="sm"
+                            value={`${horas(duration)} hs`}
+                            color={`${getColorByDuration(duration)}`}
+                          />
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <div>
+                          {hashtags.map((tag, index) => (
+                            <Typography
+                              key={index}
+                              variant="small"
+                              color="blue-gray"
+                              className="font-normal"
+                            >
+                              {`#${tag}`}
+                            </Typography>
+                          ))}
+                        </div>
+                      </td>
+                      <td className={classes}>
+                        <Tooltip content="Edit User">
+                          <IconButton variant="text">
+                            <PencilIcon className="h-4 w-4" />
+                          </IconButton>
+                        </Tooltip>
+                      </td>
+                    </tr>
+                  </>
                 );
               }
             )}

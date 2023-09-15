@@ -7,6 +7,7 @@ export const citySlice = createSlice({
     filteredCities: [],
     losItineraries: [],
     cityFound: {},
+    cityById:{},
     countryId: '',
     counter: 0,
     page: 0,
@@ -18,6 +19,10 @@ export const citySlice = createSlice({
       state.data = action.payload.data;
       state.filteredCities = action.payload.data;
       state.isLoading = false;
+    },
+    setCityById: (state, action) => {
+      console.log('PAYLOAD DE SETCITIBYID', action.payload);
+      state.cityById = action.payload.data;
     },
 
    starLoadingCities: (state /* action */) => {
@@ -33,5 +38,9 @@ export const citySlice = createSlice({
   },
 });
 
-export const { setCities, filterOneCityById, starLoadingCities } =
+export const { 
+  setCities, 
+  setCityById,
+  filterOneCityById, 
+  starLoadingCities } =
   citySlice.actions;

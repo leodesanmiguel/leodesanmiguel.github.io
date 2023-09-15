@@ -18,7 +18,7 @@ import { getAllCities } from "./redux/thunk/thunkCity";
 import { SignUp } from "./components/signup/SignUp";
 import { Page404 } from "./pages/404/Page404";
 import { urlApi } from "./api/Api";
-import { setAuth, startingLogin } from "./redux/slices/user/userSlice";
+import { setAuth } from "./redux/slices/user/userSlice";
 import { SignIn } from "./components/signIn/SignIn";
 import {  LoggedIn2 } from "./components/signIn/LoggedIn2";
 import { LoggedIn1 } from "./components/signIn/LoggedIn1";
