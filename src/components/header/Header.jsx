@@ -3,8 +3,8 @@ import { Login, Logo } from "./Components";
 
 import { MenuBar } from "./MenuBar";
 import {
+  Collapse,
   IconButton,
-  MobileNav,
   Navbar,
   Typography,
 } from "@material-tailwind/react";
@@ -37,14 +37,13 @@ export const Header = () => {
     <>
       <Navbar className="mx-auto max-w-screen-xl p-1 y-4 bg-transparent ">
         <div className="sm:p-2 lg:p-4 xl:p-6 ">
-          <div className="flex items-center justify-between  text-blue-gray-900">
+          <div className="flex items-center justify-between  sm:text-white text-blue-gray-900">
             <Typography
               as="a"
               href="#"
               className="cursor-pointer p-2 font-medium"
             >
               <Logo  />
-              {/* <img src={Imagen} alt="Logo My Itineary" className="w-[200px]"/> */}
             </Typography>
             <div className="hidden lg:block">{navList}</div>
             <IconButton
@@ -53,6 +52,7 @@ export const Header = () => {
                 hover:bg-transparent 
                 focus:bg-transparent 
                 active:bg-transparent 
+                text-white
                 lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
@@ -90,9 +90,9 @@ export const Header = () => {
             </IconButton>
           </div>
         </div>
-        <MobileNav open={openNav}>
+        <Collapse open={openNav}>
           <div className="container flex justify-center mx-1">{navList}</div>
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </>
   );

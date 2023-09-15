@@ -9,7 +9,7 @@ export const MenuItem = ({ href, isActive, children }) => {
           hover:bg-sky-100 hover:text-blue-900 bg-transparent
           ${isActive ? 
             "bg-sky-100 text-white" 
-            : "bg-slate-10"
+            : "bg-slate-900"
         }`}
       >
         {children}
