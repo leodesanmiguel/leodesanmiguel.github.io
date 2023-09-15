@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
+import Imagen from "../../assets/logo_my_tinerary.png";
 
-export const Logo = ({ imagen }) => {
+export const Logo = () => {
   return (
     <div className="flex items-center space-x-4">
       <img
-        src={imagen}
+        src={Imagen}
         alt="aplication logo"
         width="200"
         height="88"
@@ -13,10 +13,6 @@ export const Logo = ({ imagen }) => {
       />
     </div>
   );
-};
-
-Logo.propTypes = {
-  imagen: PropTypes.object,
 };
 
 

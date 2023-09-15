@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Login, Logo } from "./Components";
-import Imagen from "../../assets/logo_my_tinerary.png";
+
 import { MenuBar } from "./MenuBar";
 import {
   IconButton,
@@ -10,24 +10,25 @@ import {
 } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 
-
-
-
 export const Header = () => {
   const [openNav, setOpenNav] = useState(false);
 
-  const links = useSelector((state) => state.home.links)
+  const linksArray = useSelector((state) => state.home.links);
+
+  const linksObject = {};
+  linksArray.forEach((link, index) => {
+    linksObject[index] = link; // Suponiendo que index es un identificador único
+  });
 
   useEffect(() => {
     "resize", () => window.innerWidth >= 768 && setOpenNav(false);
   }, []);
 
-
   const navList = (
-    <> 
+    <>
       <div className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-        <MenuBar links={links} />
-        <Login    />
+        <MenuBar links={linksObject} />
+        <Login />
       </div>
     </>
   );
@@ -35,14 +36,15 @@ export const Header = () => {
   return (
     <>
       <Navbar className="mx-auto max-w-screen-xl p-1 y-4 bg-transparent ">
-        <div className="sm:p-2 lg:p-4 xl:p-6 "> 
+        <div className="sm:p-2 lg:p-4 xl:p-6 ">
           <div className="flex items-center justify-between  text-blue-gray-900">
             <Typography
               as="a"
               href="#"
               className="cursor-pointer p-2 font-medium"
             >
-              <Logo imagen={Imagen} />
+              <Logo  />
+              {/* <img src={Imagen} alt="Logo My Itineary" className="w-[200px]"/> */}
             </Typography>
             <div className="hidden lg:block">{navList}</div>
             <IconButton

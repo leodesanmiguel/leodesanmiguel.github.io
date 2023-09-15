@@ -9,22 +9,20 @@ export const MenuBar = ({ links }) => {
   const { id } = useParams();
   const [isActive, setIsActive] = useState(true);
 
-  console.log(links);
-
+  const linkArray = Object.values(links);
+  console.log(linkArray);
   return (
-    <MenuList>
-      {links.map(({ value, content, id, active }, index) => {
-        console.log("enlace: ", value, content, id, active);
-        return (
+    <div>
+      <nav className="hidden lg:flex space-x-8   py-4 text-sm font-medium bg-transparent">
+        {linkArray.map(({ value, content, id, isActive }, index) => (
           <Fragment key={id}>
-            <MenuItem href={value} isActive={isActive}>
+            <MenuItem href={value} isActive={true}>
               {content}
             </MenuItem>
           </Fragment>
-        );
-      })}
-
-    </MenuList>
+        ))}
+      </nav>
+    </div>
   );
 };
 

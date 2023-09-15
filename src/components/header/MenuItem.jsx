@@ -19,7 +19,7 @@ export const MenuItem = ({ href, isActive, children }) => {
 };
 
 MenuItem.propTypes = {
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   isActive: PropTypes.bool,
-  children: PropTypes.object,
+  children: PropTypes.string,
 };
